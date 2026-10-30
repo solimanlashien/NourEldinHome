@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#0f1a17">
+<meta name="description" content="NourEldin Home - complete homes from A to Z. Furniture, design, finishing and delivery.">
+<title>NourEldin Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="images/living-room.jpg">
+<style>
+/* ==========================================================
+   NourEldin Home - styles
+   Colors and fonts: edit the variables in :root below.
+   Images used by CSS (photo + logo): see --photo, --wm, --lk.
+   ========================================================== */
+:root{
+  --bg:#f6f1e7;--bg2:#ece4d3;--ink:#13201c;--mute:#5c635d;--gold:#9a7a34;--line:rgba(19,32,28,.16);--hbg:rgba(246,241,231,.94);
+  --deep:#0f1a17;--ivory:#f3ede1;--champ:#c8a96a;
+  --photo:url(images/living-room.jpg);--serif:'Cormorant Garamond','Times New Roman',serif;--sans:'Jost','Helvetica Neue',Arial,sans-serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light;
+}
+:root:not([data-theme="light"]){}
+:root[data-theme="dark"]{--bg:#0f1a17;--bg2:#15231f;--ink:#f3ede1;--mute:#a9b0a8;--gold:#c8a96a;--line:rgba(243,237,225,.18);--hbg:rgba(15,26,23,.94);color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 80px)}
+html[lang=ar]{--serif:'Amiri','Times New Roman',serif;--sans:'Tajawal',Tahoma,Arial,sans-serif}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:300 17px/1.8 var(--sans);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--hbg);z-index:30}
+img,svg{max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;line-height:1.15;letter-spacing:.01em}
+h2{font-size:clamp(2rem,4.2vw,3.2rem)}
+p{margin:0}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+section{padding:110px 0}
+
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--hbg);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:20px;height:76px}
+.logo{display:flex;align-items:center;gap:14px;white-space:nowrap}
+.logo .wm{display:block;width:158px;height:auto}
+.logo i{font:italic 500 1.35rem var(--serif);color:var(--gold);padding-inline-start:14px;border-inline-start:1px solid var(--line);line-height:1}
+.flogo{display:inline-flex;flex-direction:column;align-items:center;gap:10px}
+.flogo .lk{display:block;width:210px;height:auto}
+.flogo i{font:italic 500 1.3rem var(--serif);color:var(--champ)}
+nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0}
+nav a{font-size:.95rem;padding:6px 0;border-bottom:1px solid transparent;transition:border-color .25s,color .25s}
+nav a:hover{color:var(--gold);border-color:var(--gold)}
+.tools{display:flex;align-items:center;gap:14px}
+.lang{background:none;border:1px solid var(--line);color:var(--ink);font:400 .9rem var(--sans);padding:8px 16px;cursor:pointer;transition:border-color .25s}
+.lang:hover{border-color:var(--gold)}
+.btn{display:inline-block;border:1px solid var(--gold);background:var(--gold);color:#fff;font:400 .95rem var(--sans);padding:12px 28px;cursor:pointer;transition:background .3s,color .3s}
+:root[data-theme="dark"] .btn,.dk .btn{color:var(--deep)}
+.btn:hover{background:transparent;color:var(--gold)}
+.btn.ghost{background:transparent;color:var(--ivory);border-color:rgba(243,237,225,.5)}
+.btn.ghost:hover{border-color:var(--champ);color:var(--champ)}
+.burger{display:none;background:none;border:0;width:40px;height:40px;cursor:pointer;color:var(--ink)}
+.burger span{display:block;width:24px;height:1px;background:currentColor;margin:7px auto}
+
+/* hero */
+.hero{background:var(--deep);color:var(--ivory);padding:0;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;min-height:calc(100vh - 76px);min-height:calc(100svh - 76px);padding-top:70px;padding-bottom:70px}
+.hero h1{font-size:clamp(3rem,7vw,6rem);color:var(--ivory)}
+.hero h1 em{display:block;font-style:italic;font-weight:400;color:var(--champ);font-size:.62em;margin-top:.25em}
+.hero p{max-width:30em;margin:30px 0 40px;color:rgba(243,237,225,.78);font-size:1.1rem}
+.acts{display:flex;gap:16px;flex-wrap:wrap}
+.hero .btn{color:var(--deep);background:var(--champ);border-color:var(--champ)}
+.hero .btn:hover{background:transparent;color:var(--champ)}
+.hero .btn.ghost{background:transparent;color:var(--ivory)}
+.arch{position:relative;aspect-ratio:3/4.2;max-width:420px;width:100%;margin-inline:auto;border:1px solid var(--champ);border-radius:999px 999px 0 0;padding:14px}
+.arch .ph{height:100%;border-radius:999px 999px 0 0}
+
+/* placeholders */
+.ph{background:linear-gradient(160deg,#1f3029,#3a4a3f 55%,#7d6a3f);display:flex;align-items:flex-end;justify-content:center;color:rgba(243,237,225,.7);font-size:.85rem;padding:18px;text-align:center}
+.ph.b{background:linear-gradient(160deg,#2a2622,#51463a 60%,#a08652)}
+.ph.c{background:linear-gradient(160deg,#16231f,#2f4339 60%,#8a9a86)}
+
+/* about */
+.about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about h2{margin-bottom:28px}
+.about p+p{margin-top:18px}
+.about p{color:var(--mute)}
+.about .ph{aspect-ratio:4/5}
+.stats{display:flex;gap:44px;margin-top:40px;padding-top:30px;border-top:1px solid var(--line)}
+.stats b{display:block;font:500 2.4rem var(--serif);color:var(--gold)}
+.stats span{font-size:.9rem;color:var(--mute)}
+
+/* services */
+.services{background:var(--bg2)}
+.head{max-width:620px;margin-bottom:60px}
+.head p{color:var(--mute);margin-top:16px}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line)}
+.step{padding:34px 24px 10px 0;border-inline-end:1px solid var(--line);padding-inline-start:24px}
+.step:first-child{padding-inline-start:0}.step:last-child{border-inline-end:0}
+.step b{font:400 2.6rem var(--serif);color:var(--gold);display:block;margin-bottom:12px}
+.step h3{font-size:1.5rem;margin-bottom:10px}
+.step p{color:var(--mute);font-size:.95rem}
+
+/* collections */
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:22px}
+.card{position:relative;overflow:hidden;min-height:300px;grid-column:span 4;display:flex}
+.card.w{grid-column:span 8}
+.card .ph{flex:1;align-items:flex-start;justify-content:flex-start;transition:transform .8s}
+.card:hover .ph{transform:scale(1.04)}
+.card h3{position:absolute;bottom:22px;inset-inline-start:26px;color:var(--ivory);font-size:1.8rem;text-shadow:0 1px 14px rgba(0,0,0,.5)}
+.card::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(0,0,0,.45));pointer-events:none}
+.card h3{z-index:2}
+
+/* projects */
+.projects{background:var(--deep);color:var(--ivory)}
+.projects .head p{color:rgba(243,237,225,.7)}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.proj .ph{aspect-ratio:4/5}
+.proj h3{font-size:1.5rem;margin:18px 0 4px}
+.proj p{color:rgba(243,237,225,.65);font-size:.92rem}
+
+/* contact */
+.contact .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px}
+.contact ul{list-style:none;padding:0;margin:34px 0 0}
+.contact li{padding:16px 0;border-bottom:1px solid var(--line);color:var(--mute)}
+.contact li b{display:block;font-weight:400;color:var(--ink)}
+form{display:grid;gap:22px}
+label{display:grid;gap:6px;font-size:.9rem;color:var(--mute)}
+input,select,textarea{font:300 1rem var(--sans);background:transparent;color:var(--ink);border:0;border-bottom:1px solid var(--line);padding:10px 0;border-radius:0;width:100%}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--gold)}
+select option{color:#13201c}
+form .btn{justify-self:start}
+#note{color:var(--gold);min-height:1.6em;font-size:.95rem}
+
+footer{background:var(--deep);color:rgba(243,237,225,.7);padding:60px 0 40px;font-size:.92rem}
+footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:center}
+footer .soc{display:flex;gap:24px}
+footer a:hover{color:var(--champ)}
+
+html[dir=rtl] h1,html[dir=rtl] h2,html[dir=rtl] h3{letter-spacing:0;line-height:1.35}
+html[dir=rtl] body{line-height:1.95}
+
+@media (max-width:980px){
+  section{padding:80px 0}
+  .burger{display:block}
+  nav{position:absolute;top:100%;inset-inline:0;background:var(--bg);border-bottom:1px solid var(--line);display:none}
+  nav.open{display:block}
+  nav ul{flex-direction:column;gap:0;padding:10px 28px 20px}
+  nav li{border-bottom:1px solid var(--line)}nav a{display:block;padding:14px 0;border:0}
+  .tools .btn{display:none}
+  .hero .wrap,.about .wrap,.contact .wrap{grid-template-columns:1fr;gap:50px;min-height:0}
+  .arch{max-width:340px}
+  .steps{grid-template-columns:1fr 1fr}.step{border:0;border-top:1px solid var(--line);padding:26px 0}.step:first-child{border-top:0}
+  .pgrid{grid-template-columns:1fr}
+  .card,.card.w{grid-column:span 12;min-height:240px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+[hidden]{display:none!important}
+.cover{position:fixed;inset:0;z-index:1;background:#1a1410}
+.cover .bg{display:none;position:absolute;inset:-40px;background:var(--photo) center/cover no-repeat;filter:blur(28px) brightness(.62) saturate(1.1)}
+.cover .photo{position:absolute;inset:0;background:var(--photo) no-repeat 46% 62%/cover;animation:settle 2.6s ease-out both}
+@keyframes settle{from{transform:scale(1.07)}to{transform:scale(1)}}
+.cover::before,.cover::after{content:"";position:absolute;left:0;right:0;pointer-events:none}
+.cover::before{top:0;height:240px;background:linear-gradient(rgba(8,14,12,.66),transparent)}
+.cover::after{bottom:0;height:320px;background:linear-gradient(transparent,rgba(8,14,12,.78))}
+.arch .ph.photo2{background:url(images/window.jpg) no-repeat center/cover}
+.is-cover{overflow:hidden}
+.is-cover::before{background:transparent}
+.is-cover header{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);background:transparent;border-color:transparent;backdrop-filter:none;color:var(--ivory)}
+.is-cover .logo i{color:var(--champ);border-color:rgba(243,237,225,.4)}
+.is-cover .lang{color:var(--ivory);border-color:rgba(243,237,225,.5)}
+.is-cover .burger{color:var(--ivory)}
+.is-cover .btn{background:var(--champ);border-color:var(--champ);color:var(--deep)}
+.is-cover .btn:hover{background:transparent;color:var(--champ)}
+.is-cover nav a:hover{color:var(--champ);border-color:var(--champ)}
+nav a[aria-current]{color:var(--gold);border-color:var(--gold)}
+.is-cover nav a[aria-current]{color:var(--champ);border-color:var(--champ)}
+.doors{padding:90px 0}
+.dgrid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.dgrid a{display:block;padding-block:38px;padding-inline:32px;border-inline-end:1px solid var(--line)}
+.dgrid a:first-child{padding-inline-start:0}
+.dgrid a:last-child{border-inline-end:0}
+.dgrid h3{font-size:1.7rem;margin-bottom:10px;transition:color .3s}
+.dgrid p{color:var(--mute);font-size:.97rem}
+.dgrid a:hover h3{color:var(--gold)}
+.contact{border-top:1px solid var(--line)}
+footer .wrap{gap:32px}
+footer .soc{display:flex;gap:12px}
+.soc a{width:42px;height:42px;border:1px solid rgba(243,237,225,.35);border-radius:50%;display:grid;place-items:center;transition:border-color .3s,color .3s}
+.soc svg,.loc svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.soc a:hover{border-color:var(--champ);color:var(--champ)}
+.fr{display:grid;gap:8px;font-size:.88rem;text-align:end;max-width:320px}
+.loc{display:flex;gap:8px;align-items:flex-start;justify-content:flex-end}
+.loc svg{width:17px;height:17px;margin-top:4px}
+.is-cover footer{position:fixed;left:0;right:0;bottom:0;z-index:35;background:transparent;padding:0 0 calc(28px + env(safe-area-inset-bottom,0px));color:rgba(243,237,225,.92)}
+.is-cover .flogo .lk{width:150px}
+@media (max-width:980px){
+  .is-cover nav{background:rgba(15,26,23,.97)}
+  .dgrid{grid-template-columns:1fr}
+  .dgrid a{border:0;border-bottom:1px solid var(--line);padding-inline:0}
+  .doors{padding:60px 0}
+}
+@media (max-width:760px){
+  footer .wrap{flex-direction:column;text-align:center;gap:20px}
+  .fr{text-align:center;justify-items:center}
+  .loc{justify-content:center}
+  .is-cover .flogo .lk{width:120px}
+  .is-cover .flogo i{display:none}
+}
+@media (prefers-reduced-motion:reduce){.cover .photo{animation:none}}
+header{backdrop-filter:none}
+.burger{display:block;color:var(--ink)}
+.burger span{margin:5px auto}
+.scrim{position:fixed;inset:0;z-index:1;background:rgba(8,14,12,.6);opacity:0;pointer-events:none;transition:opacity .4s}
+.scrim.on{opacity:1;pointer-events:auto}
+nav{position:fixed;top:0;bottom:0;inset-inline-start:auto;inset-inline-end:0;width:min(400px,88vw);display:block;background:var(--deep);color:var(--ivory);z-index:2;padding:calc(env(safe-area-inset-top,0px) + 96px) 40px 40px;border:0;overflow-y:auto;transform:translateX(100%);visibility:hidden;transition:transform .5s cubic-bezier(.2,.7,.2,1),visibility 0s .5s}
+html[dir=rtl] nav{transform:translateX(-100%)}
+nav.open{transform:none;visibility:visible;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+nav ul{flex-direction:column;gap:0;padding:0}
+nav li{border-bottom:1px solid rgba(243,237,225,.14)}
+nav a,.is-cover nav a{display:block;padding:20px 0;border:0;font:500 1.75rem/1.3 var(--serif);color:var(--ivory)}
+nav a:hover,nav a[aria-current],.is-cover nav a:hover,.is-cover nav a[aria-current]{color:var(--champ);border:0}
+.close{position:absolute;top:calc(env(safe-area-inset-top,0px) + 22px);inset-inline-end:28px;width:44px;height:44px;background:none;border:1px solid rgba(243,237,225,.3);border-radius:50%;color:var(--ivory);font:300 1.7rem/1 var(--sans);cursor:pointer;transition:border-color .3s,color .3s}
+.close:hover{border-color:var(--champ);color:var(--champ)}
+.is-cover .burger{color:var(--ivory)}
+
+/* ---- Collections, products, favorites ---- */
+.fav{position:relative;width:42px;height:42px;display:grid;place-items:center;color:var(--ink)}
+.fav svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round}
+.fav:hover{color:var(--gold)}
+#favcount{position:absolute;top:2px;inset-inline-end:0;min-width:18px;height:18px;border-radius:9px;background:var(--gold);color:var(--bg);font:500 .72rem/18px var(--sans);text-align:center}
+.is-cover .fav{color:var(--ivory)}
+.is-cover .fav:hover{color:var(--champ)}
+.chips{display:flex;gap:26px;flex-wrap:wrap;margin-bottom:46px;border-bottom:1px solid var(--line)}
+.chip{background:none;border:0;border-bottom:1px solid transparent;margin-bottom:-1px;color:var(--mute);font:400 .98rem var(--sans);padding:10px 0;cursor:pointer;transition:color .25s,border-color .25s}
+.chip:hover{color:var(--ink)}
+.chip.on{color:var(--gold);border-color:var(--gold)}
+.shop{display:grid;grid-template-columns:repeat(3,1fr);gap:44px 28px}
+.pimg{position:relative;aspect-ratio:4/5;overflow:hidden}
+.pimg .ph{height:100%}
+.pimg img{width:100%;height:100%;object-fit:cover;display:block}
+.pc h3{font-size:1.4rem;margin:16px 0 2px}
+.pc p{color:var(--mute);font-size:.9rem}
+.heart{position:absolute;top:14px;inset-inline-end:14px;width:44px;height:44px;border:0;border-radius:50%;background:rgba(246,241,231,.94);color:#13201c;display:grid;place-items:center;cursor:pointer;transition:color .25s,transform .25s}
+.heart svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round}
+.heart:hover{transform:scale(1.08)}
+.heart[aria-pressed="true"]{color:#9a7a34}
+.heart[aria-pressed="true"] svg{fill:currentColor}
+.heart.pop{animation:pop .45s ease}
+@keyframes pop{40%{transform:scale(1.28)}100%{transform:scale(1)}}
+#favempty p{color:var(--mute);margin-bottom:26px;max-width:32em}
+#favquote{margin-top:50px}
+@media (max-width:980px){.shop{grid-template-columns:repeat(2,1fr);gap:34px 18px}}
+@media (max-width:520px){.pc h3{font-size:1.15rem}.heart{width:38px;height:38px;top:10px;inset-inline-end:10px}.chips{gap:18px}}
+@media (prefers-reduced-motion:reduce){.heart.pop{animation:none}}
+
+/* ---- Logo colour: dark logo on light pages, ivory logo on dark pages/cover ---- */
+.logo .wm-ivory{display:none}
+.is-cover .logo .wm-ink{display:none}
+.is-cover .logo .wm-ivory{display:block}
+:root[data-theme="dark"] .logo .wm-ink{display:none}
+:root[data-theme="dark"] .logo .wm-ivory{display:block}
+
+/* About image */
+.about .aimg{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+
+/* ==========================================================
+   MOBILE OPTIMIZATION (same design, fitted to phones)
+   ========================================================== */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+a,button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.is-cover{overscroll-behavior:none}
+.more{text-align:center;margin-top:56px}
+@media (max-width:760px){
+  /* Cover on phones: full-screen. A big, sharp part of the room sits in the middle and
+     fades softly into a blurred copy of the same photo, so the screen is always filled. */
+  .cover .bg{display:block}
+  .cover .photo{inset:9% 0 12% 0;background-size:cover;background-position:44% 50%;animation:none;
+    -webkit-mask-image:linear-gradient(transparent,#000 16%,#000 84%,transparent);mask-image:linear-gradient(transparent,#000 16%,#000 84%,transparent)}
+  body{font-size:16px}
+  .wrap{padding:0 18px}
+  .bar{height:64px;gap:8px}
+  .logo{gap:10px}
+  .logo .wm{width:116px}
+  .logo i{font-size:1.1rem;padding-inline-start:10px}
+  .tools{gap:4px}
+  .lang{padding:9px 12px;font-size:.85rem}
+  .fav,.burger{width:42px;height:42px}
+  section{padding:64px 0}
+  .head{margin-bottom:38px}
+  .hero .wrap{padding-top:44px;padding-bottom:56px;gap:40px}
+  .hero p{margin:22px 0 30px;font-size:1.02rem}
+  .acts{flex-direction:column}
+  .acts .btn{text-align:center;width:100%}
+  .arch{max-width:300px}
+  .about .wrap,.contact .wrap{gap:40px}
+  .stats{gap:30px;margin-top:30px}
+  .doors{padding:48px 0}
+  .steps{grid-template-columns:1fr}
+  .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-18px;padding-inline:18px;gap:22px}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{white-space:nowrap;flex:none;padding:12px 0}
+  .heart{width:40px;height:40px}
+  .more .btn,form .btn,#favquote{width:100%;text-align:center}
+  footer{padding:44px 0 34px}
+  .is-cover footer .wrap{gap:12px}
+  .is-cover .soc a{width:38px;height:38px}
+  .is-cover .fr{font-size:.8rem;gap:4px}
+  .is-cover .flogo .lk{width:112px}
+  .cover::after{height:340px}
+}
+@media (max-width:400px){
+  .logo i{display:none}
+  .logo .wm{width:108px}
+  .lang{padding:9px 10px}
+  .wrap{padding:0 16px}
+  .hero h1{font-size:2.7rem}
+  nav{padding-inline:28px}
+  nav a,.is-cover nav a{font-size:1.55rem;padding:17px 0}
+}
+@media (max-height:520px) and (orientation:landscape){
+  .is-cover .fr,.is-cover .flogo i{display:none}
+  .cover::after{height:200px}
+}
+
+/* ---- "+" add piece, product details ---- */
+.addtile{position:relative;align-self:start;aspect-ratio:5/4;border:1px solid var(--line);background:linear-gradient(160deg,var(--bg2),var(--bg));color:var(--gold);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:border-color .3s}
+.addtile::before{content:"";position:absolute;inset:8px;border:1px solid var(--gold);opacity:.45;pointer-events:none;transition:opacity .3s}
+.addtile i{font-style:normal;width:54px;height:54px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;font:300 2rem/1 var(--sans);padding-bottom:3px;transition:background .3s,color .3s}
+.addtile span{font:italic 500 1.25rem var(--serif);color:var(--ink)}
+.addtile:hover{border-color:var(--gold)}
+.addtile:hover::before{opacity:.9}
+.addtile:hover i{background:var(--gold);color:var(--bg)}
+@media (max-width:520px){.addtile i{width:44px;height:44px;font-size:1.7rem}.addtile span{font-size:1.05rem}.addtile{gap:10px}}
+.pname{background:none;border:0;padding:0;color:inherit;font:inherit;text-align:start;cursor:pointer}
+.pname:hover{color:var(--gold)}
+.pimg[data-open]{cursor:pointer}
+.pdesc{margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+dialog{width:min(560px,92vw);max-height:90vh;overflow:auto;margin:auto;background:var(--bg);color:var(--ink);border:1px solid var(--line);padding:30px}
+dialog::backdrop{background:rgba(8,14,12,.7)}
+dialog h2{font-size:1.9rem;margin-bottom:6px}
+#detail{width:min(940px,94vw);position:fixed}
+.dwrap{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
+#dimg{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+#dph{aspect-ratio:4/5}
+.dinfo{padding-top:8px}
+.dcat{color:var(--gold);margin:4px 0 18px}
+#ddesc{color:var(--mute);white-space:pre-line}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.thumbs button{width:62px;height:62px;padding:0;border:1px solid var(--line);background:none;cursor:pointer}
+.thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.dacts{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.btn.line{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.line:hover{border-color:var(--gold);color:var(--gold)}
+.dclose{position:absolute;top:12px;inset-inline-end:12px;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:300 1.6rem/1 var(--sans);cursor:pointer;z-index:2}
+.linkbtn{background:none;border:0;padding:0;color:var(--mute);text-decoration:underline;font:inherit;font-size:.9rem;cursor:pointer;justify-self:start}
+.hint{font-size:.85rem;color:var(--mute)}
+#anote{color:var(--gold);min-height:1.4em;font-size:.95rem}
+@media (max-width:760px){.dwrap{grid-template-columns:1fr;gap:22px}dialog{padding:22px 18px}.dacts .btn{flex:1}}
+
+/* ---- Hero title: N monogram + gold slogan ---- */
+.hero-n{display:block;width:clamp(96px,12vw,140px);height:auto}
+.hero h1 em{font-style:normal;font-weight:500;text-transform:uppercase;letter-spacing:.14em;font-size:clamp(1.05rem,2.2vw,1.55rem);line-height:1.45;margin-top:1.3rem;color:var(--champ)}
+html[lang=ar] .hero h1 em{letter-spacing:0;text-transform:none;font-size:clamp(1.4rem,3vw,2rem);font-weight:700}
+@media (max-width:760px){.hero-n{width:92px}.hero h1 em{letter-spacing:.1em;font-size:1rem;margin-top:1.1rem}html[lang=ar] .hero h1 em{font-size:1.35rem}}
+
+/* ---- Hero title: N centered over the slogan ---- */
+.hero h1{display:flex;flex-direction:column;align-items:center;width:fit-content;max-width:100%;text-align:center}
+.hero-n{margin-inline:auto}
+@media (max-width:980px){
+  .hero h1{width:100%}
+  .hero .wrap>div:first-child{text-align:center}
+  .hero p{margin-inline:auto}
+  .acts{justify-content:center}
+}
+
+/* About pull-quote, Services extras (from company profile) */
+.about p.pull{margin-top:28px;padding-inline-start:20px;border-inline-start:2px solid var(--gold);font:italic 500 1.4rem/1.4 var(--serif);color:var(--ink)}
+.stats{flex-wrap:wrap}
+.promise{margin-top:70px;padding:56px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}
+.promise h3{font:500 clamp(1.8rem,4vw,3rem)/1.15 var(--serif);max-width:820px;margin:0 auto 16px}
+.promise p{color:var(--mute);max-width:620px;margin:0 auto}
+.extras{margin-top:80px}
+.extras .head{margin-bottom:34px}
+.egrid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.egrid>div{padding:28px 28px 30px 0;border-bottom:1px solid var(--line)}
+.egrid h4{font:500 1.45rem var(--serif);color:var(--ink);margin-bottom:8px}
+.egrid p{color:var(--mute);font-size:.95rem}
+.partner{margin-top:70px;background:var(--deep);color:var(--ivory);padding:46px 44px;display:flex;gap:30px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.partner h3{font:500 clamp(1.6rem,3vw,2.3rem)/1.2 var(--serif);margin-bottom:10px}
+.partner p{color:rgba(243,237,225,.75);max-width:620px}
+.partner .plink{border:1px solid var(--champ);color:var(--champ);padding:14px 30px;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem;transition:background .3s,color .3s}
+.partner .plink:hover{background:var(--champ);color:var(--deep)}
+@media (max-width:980px){.egrid{grid-template-columns:1fr 1fr}}
+@media (max-width:760px){.egrid{grid-template-columns:1fr}.promise{margin-top:48px;padding:40px 0}.extras{margin-top:56px}.partner{padding:34px 24px;margin-top:48px}.about p.pull{font-size:1.2rem}}
+
+/* Services: detailed steps (vertical rows) */
+.steps{display:block;grid-template-columns:none}
+.step{display:grid;grid-template-columns:70px 1fr 1.25fr;gap:28px;padding:34px 0;border:0;border-bottom:1px solid var(--line);padding-inline-start:0}
+.step:first-child{padding-inline-start:0}
+.step b{margin:0}
+.step .lead{color:var(--ink);font-size:1.02rem}
+.sul{list-style:none;margin:0;padding:0}
+.sul li{position:relative;padding-inline-start:20px;color:var(--mute);font-size:.95rem;margin-bottom:9px}
+.sul li::before{content:"";position:absolute;inset-inline-start:0;top:.7em;width:8px;height:1px;background:var(--gold)}
+.extras+.extras{margin-top:56px}
+/* About: where our work lives */
+.reach{margin-top:90px}
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.rc{padding:26px 26px 28px 0;border-bottom:1px solid var(--line)}
+.rc.big{grid-column:1/-1}
+.rc h4{font:500 1.7rem var(--serif);color:var(--ink)}
+.about .rc p{color:var(--mute);font-size:.95rem;margin-top:6px}
+.about .rc p.city{color:var(--gold);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;margin:6px 0 10px}
+.rul{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 30px}
+.rul li{color:var(--ink);font-size:1rem;padding-inline-start:20px;position:relative}
+.rul li::before{content:"";position:absolute;inset-inline-start:0;top:.7em;width:8px;height:1px;background:var(--gold)}
+.about p.reachnote{margin-top:20px;color:var(--mute);font-style:italic}
+@media (max-width:980px){.rgrid{grid-template-columns:1fr 1fr}.step{grid-template-columns:56px 1fr;}.step .sul{grid-column:2}}
+@media (max-width:760px){.rgrid{grid-template-columns:1fr}.rul{grid-template-columns:1fr}.reach{margin-top:56px}.step{grid-template-columns:1fr;gap:12px;padding:26px 0}.step .sul{grid-column:auto}.rc{padding-inline-end:0}}
+
+/* Services: staircase layout (1 left high, 2 right lower, 3 left lower, 4 right lower, 5 right lowest) */
+.steps{display:flex;flex-direction:column;border-top:0;padding-bottom:10px}
+.step{display:block;width:calc(50% - 20px);padding:32px 30px 26px;margin:0;border:1px solid var(--line);border-top:2px solid var(--gold);background:var(--bg);position:relative}
+.step:first-child{padding-inline-start:30px}
+.step:nth-child(odd){align-self:flex-start}
+.step:nth-child(even){align-self:flex-end}
+.step:nth-child(5){align-self:flex-end}
+.step+.step{margin-top:-120px}
+.step:nth-child(5){margin-top:36px}
+.step b{font:400 3.4rem/1 var(--serif);color:var(--gold);display:block;margin-bottom:14px}
+.step .sbody{margin-bottom:16px}
+@media (max-width:760px){
+  .step{width:100%}
+  .step+.step,.step:nth-child(5){margin-top:18px}
+  .step:nth-child(even),.step:nth-child(5){margin-inline-start:10%;width:90%;align-self:flex-start}
+  .step{padding:26px 22px 20px}
+  .step b{font-size:2.6rem}
+}
+
+/* Services: elegant open staircase (no boxes). 1 L, 2 R, 3 L, 4 R, 5 L */
+.steps{padding-bottom:0}
+.step{width:calc(46% - 10px);padding:0;border:0;background:none;margin:0}
+.step:first-child{padding-inline-start:0}
+.step:nth-child(odd),.step:nth-child(5){align-self:flex-start}
+.step:nth-child(even){align-self:flex-end}
+.step+.step{margin-top:-70px}
+.step:nth-child(5){margin-top:-70px}
+.step b{font:300 4.6rem/1 var(--serif);color:var(--gold);margin-bottom:10px;letter-spacing:-.02em}
+.step b::after{content:"";display:block;width:44px;height:1px;background:var(--gold);margin-top:16px}
+.step h3{font-size:1.9rem;margin-bottom:8px}
+.step .sbody{margin-bottom:14px}
+.sul li{margin-bottom:11px}
+@media (max-width:980px){.step{width:calc(48% - 8px)}.step b{font-size:3.6rem}}
+@media (max-width:760px){
+  .step,.step:nth-child(even),.step:nth-child(5){width:100%;margin-inline-start:0;align-self:flex-start;padding:0}
+  .step+.step,.step:nth-child(5){margin-top:44px}
+  .step:nth-child(even){padding-inline-start:12%}
+  .step b{font-size:3rem}
+}
+
+/* About photo: show the full craft photo */
+.about .aimg{aspect-ratio:758/1018;object-position:center top}
+
+/* About: small photo beside the "Since 1940" heading and first paragraph */
+.about .wrap:not(.reach){grid-template-columns:1fr;gap:0}
+.about .wrap:not(.reach)>div{max-width:900px}
+.about .aimg{float:inline-end;width:clamp(104px,13vw,150px);height:auto;aspect-ratio:758/1018;margin-inline-start:30px;margin-bottom:14px}
+.about .stats{clear:both}
+.about .wrap.reach{display:block}
+@media (max-width:760px){.about .aimg{width:96px;margin-inline-start:18px}}
+
+/* About: photo beside the text, same height as the text block */
+.about .wrap:not(.reach){display:grid;grid-template-columns:1fr minmax(260px,36%);gap:20px 64px;align-items:stretch}
+.about .wrap:not(.reach)>.atext{max-width:none}
+.about .wrap:not(.reach)>.stats{grid-column:1/-1;max-width:none}
+.about .aimg{float:none;width:100%;height:100%;min-height:340px;aspect-ratio:auto;object-fit:cover;object-position:center top;margin:0}
+@media (max-width:980px){.about .wrap:not(.reach){grid-template-columns:1fr;gap:34px}.about .aimg{height:340px;min-height:0;object-position:center 22%}}
+
+/* Services heading: gold */
+.services>.wrap>.head h2{color:var(--gold)}
+
+/* ---- Mobile polish: always the same light colour tone as desktop ---- */
+:root{color-scheme:light}
+html,body{overflow-x:hidden;max-width:100%}
+img{max-width:100%;height:auto}
+@supports (height:100dvh){.cover{height:100dvh;bottom:auto}}
+header{padding-top:env(safe-area-inset-top,0px)}
+footer{padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
+@media (max-width:760px){
+  input,select,textarea{font-size:16px}
+  .btn{min-height:46px;display:inline-flex;align-items:center;justify-content:center}
+  .hero h1{font-size:clamp(2.4rem,11vw,3.2rem)}
+  .head h2,.about h2{font-size:clamp(1.8rem,7.4vw,2.4rem);line-height:1.15}
+}
+
+/* ---- Green tone: countries section ---- */
+.reachsec{
+  --bg:#0f1a17;--bg2:#0f1a17;--ink:#f3ede1;--mute:rgba(243,237,225,.72);--gold:#c8a96a;
+  --line:rgba(243,237,225,.18);
+  background:#0f1a17;color:#f3ede1;
+}
+.reachsec{padding:90px 0}
+.reachsec .reach{margin-top:0}
+.reachsec .head h2{color:#f3ede1}
+.reachsec .rc h4{color:var(--champ)}
+.reachsec .rc p.city{color:rgba(243,237,225,.6)}
+.reachsec .rc p{color:rgba(243,237,225,.75)}
+.reachsec .rul li{color:#f3ede1}
+@media (max-width:760px){.reachsec{padding:60px 0}}
+
+/* ---- Services + Collections: same light ivory look as Home and Contact ---- */
+/* Collections stays ivory */
+[data-view="collections"].pgtop,[data-view="collections"].pgbody{background:var(--bg)}
+.pgtop{padding-bottom:30px}
+.pgtop .head{margin-bottom:0}
+.pgbody{padding-top:30px}
+@media (max-width:760px){.pgtop{padding-bottom:20px}.pgbody{padding-top:20px}}
+
+/* ---- Services page: mostly green (mixed forest green), with two ivory bands ----
+   Change --pg-green to adjust the green. Top bar uses the same green. */
+:root{--pg-green:#0f1a17}
+.services.pgtop,.services.pgbody{
+  --bg:var(--pg-green);--bg2:var(--pg-green);--ink:#f3ede1;--mute:rgba(243,237,225,.74);--gold:#c8a96a;--line:rgba(243,237,225,.2);
+  background:var(--pg-green);color:#f3ede1;
+}
+.services.pgtop .head h2,.services.pgbody .head h2{color:var(--champ)}
+.services.pgbody .btn{color:var(--deep)}
+/* ivory band: the "Beyond the sofa" block (2nd child of the page body); the other blocks stay green */
+.services.pgbody .promise,
+.services.pgbody .wrap>.extras:nth-of-type(2){
+  --bg:#f6f1e7;--ink:#13201c;--mute:#5c635d;--gold:#9a7a34;--line:rgba(19,32,28,.16);
+  background:#f6f1e7;color:#13201c;
+  box-shadow:0 0 0 100vmax #f6f1e7;clip-path:inset(0 -100vmax);
+  padding:64px 0;margin-top:80px;margin-bottom:0;border:0;
+}
+.services.pgbody .wrap>.extras:nth-of-type(2) .head h2{color:#9a7a34}
+.services.pgbody .wrap>.extras:nth-of-type(2){margin-top:80px}
+.services.pgbody .wrap>.extras:nth-of-type(3){margin-top:80px}
+.services.pgbody .partner{background:#15231f;border:1px solid rgba(200,169,106,.35)}
+@media (max-width:760px){
+  .services.pgbody .promise,.services.pgbody .wrap>.extras:nth-of-type(2){padding:44px 0;margin-top:56px}
+  .services.pgbody .wrap>.extras:nth-of-type(3){margin-top:56px}
+}
+/* top bar on the Services page */
+.is-green::before{background:var(--pg-green)}
+.is-green header{background:var(--pg-green);border-bottom:1px solid rgba(243,237,225,.14);color:var(--ivory)}
+.is-green .logo .wm-ink{display:none}
+.is-green .logo .wm-ivory{display:block}
+.is-green .logo i{color:var(--champ);border-color:rgba(243,237,225,.4)}
+.is-green .lang{color:var(--ivory);border-color:rgba(243,237,225,.5)}
+.is-green .burger,.is-green .fav{color:var(--ivory)}
+
+/* ---- Home: the three link cards look tappable ---- */
+.doors .dgrid{border-top:0;gap:18px}
+.doors .dgrid a{position:relative;display:block;padding:30px 64px 30px 28px;border:1px solid var(--line);border-inline-end:1px solid var(--line);background:var(--bg2);transition:transform .25s,border-color .25s,background .25s,box-shadow .25s;cursor:pointer}
+.doors .dgrid a:first-child{padding-inline-start:28px}
+.doors .dgrid a:last-child{border-inline-end:1px solid var(--line)}
+.doors .dgrid a::after{content:"\2192";position:absolute;inset-inline-end:22px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:var(--gold);color:#fff;display:grid;place-items:center;font:400 1.15rem/1 var(--sans);transition:transform .25s}
+html[lang=ar] .doors .dgrid a::after{content:"\2190"}
+.doors .dgrid a:hover,.doors .dgrid a:active{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 10px 26px rgba(19,32,28,.12)}
+.doors .dgrid a:hover::after{transform:translateY(-50%) translateX(3px)}
+html[lang=ar] .doors .dgrid a:hover::after{transform:translateY(-50%) translateX(-3px)}
+.doors .dgrid h3{color:var(--ink)}
+@media (max-width:760px){.doors .dgrid a,.doors .dgrid a:first-child{padding:24px 64px 24px 22px;border:1px solid var(--line)}html[lang=ar] .doors .dgrid a{padding:24px 22px 24px 64px}.doors .dgrid{gap:14px}}
+html[lang=ar] .doors .dgrid a,html[lang=ar] .doors .dgrid a:first-child{padding:30px 28px 30px 64px}
+@media (max-width:760px){html[lang=ar] .doors .dgrid a,html[lang=ar] .doors .dgrid a:first-child{padding:24px 22px 24px 64px}}
+
+/* ---- Services title: "One" white, "Vision" yellow (Arabic reads right to left, so the roles swap places) ---- */
+.services .vis .t1{color:#f3ede1}
+.services .vis .t2{color:var(--champ)}
+html[lang=ar] .services .vis .t1{color:var(--champ)}
+html[lang=ar] .services .vis .t2{color:#f3ede1}
+
+/* ---- Top bar: the name as a wordmark (NOURELDIN / HOME), no N sign ---- */
+.logo .wm{width:176px;height:auto}
+@media (max-width:760px){.logo .wm{width:128px}}
+@media (max-width:400px){.logo .wm{width:120px}}
+
+/* Services top: tagline under "One Vision" */
+.services.pgtop .head p.vtags{text-transform:none;letter-spacing:.04em;max-width:46em;margin-inline:auto;line-height:1.6}
+.services.pgtop .head p.vreal{margin:14px auto 0;font:italic 500 clamp(1.6rem,3.4vw,2.4rem)/1.2 var(--serif);color:var(--champ);text-transform:none;letter-spacing:.01em}
+html[lang=ar] .services.pgtop .head p.vreal{font-style:normal;font-family:inherit;font-weight:700}
+
+/* About: taller, clear photo beside the words (side by side on every screen size) */
+.about .wrap:not(.reach){display:grid;grid-template-columns:1fr;gap:36px}
+.about .atext{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,38%);column-gap:64px;align-items:center;max-width:none}
+.about .atext>.acopy{grid-column:1;grid-row:1}
+.about .atext>.aimg{grid-column:2;grid-row:1;float:none;width:100%;height:auto;min-height:0;aspect-ratio:758/1018;object-fit:cover;object-position:center top;margin:0;align-self:center}
+@media (max-width:980px){.about .wrap:not(.reach){grid-template-columns:1fr;gap:30px}.about .atext{column-gap:36px;grid-template-columns:minmax(0,1fr) minmax(220px,40%)}.about .atext>.aimg{height:auto;min-height:0;object-position:center top}}
+@media (max-width:760px){
+  .about .atext{display:flow-root}
+  .about .atext>.aimg{float:inline-end;width:42%;aspect-ratio:758/1018;height:auto;margin-inline-start:16px;margin-bottom:10px;margin-top:6px}
+  .about .atext>.acopy{display:block}
+}
+
+/* Home: Egypt shown alone, after the countries */
+.egypt{position:relative;overflow:hidden;padding:110px 0 120px;background:var(--bg)}
+.egypt .ghost{position:absolute;inset-inline:0;top:52%;transform:translateY(-50%);text-align:center;font:600 clamp(7rem,28vw,26rem)/.8 var(--serif);text-transform:uppercase;letter-spacing:.04em;color:transparent;-webkit-text-stroke:1px rgba(19,32,28,.14);pointer-events:none;user-select:none;white-space:nowrap}
+html[lang=ar] .egypt .ghost{letter-spacing:0;font-family:inherit;font-weight:800}
+.egypt .wrap{position:relative;z-index:1}
+.egypt .elabel{color:var(--gold);letter-spacing:.3em;text-transform:uppercase;font-size:.8rem;margin:0 0 14px}
+html[lang=ar] .egypt .elabel{letter-spacing:0;font-size:.95rem}
+.egypt h2{font-size:clamp(2.6rem,7vw,5.2rem);line-height:1;margin:0 0 14px}
+.egypt .wrap>p:not(.elabel){color:var(--mute);max-width:34em;margin:0 0 56px}
+.egypt .stamp{position:absolute;inset-inline-end:0;top:-30px;width:132px;height:132px;animation:egspin 24s linear infinite}
+.egypt .stamp text{font:600 10.5px var(--sans);letter-spacing:3px;fill:var(--gold)}
+.egypt .stamp circle{fill:var(--gold)}
+html[lang=ar] .egypt .stamp{display:none}
+@keyframes egspin{to{transform:rotate(360deg)}}
+.elist{list-style:none;margin:0;padding:0}
+.elist li{position:relative;display:flex;align-items:baseline;gap:22px;padding:22px 0;border-bottom:1px solid var(--line);font:500 clamp(1.7rem,4.6vw,3.6rem)/1.1 var(--serif);color:var(--ink);transition:transform .35s,opacity .35s,color .35s;cursor:default}
+.elist li:nth-child(even){margin-inline-start:clamp(24px,12%,150px)}
+.elist .n{font:400 .8rem var(--sans);letter-spacing:.2em;color:var(--gold)}
+.elist li i{position:absolute;inset-inline-start:0;bottom:-1px;height:2px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .5s}
+html[lang=ar] .elist li i{transform-origin:right}
+.elist:hover li{opacity:.28}
+.elist li:hover{opacity:1;color:var(--gold);transform:translateX(18px)}
+html[lang=ar] .elist li:hover{transform:translateX(-18px)}
+.elist li:hover i{transform:scaleX(1)}
+@media (hover:none){.elist:hover li{opacity:1}}
+@media (max-width:760px){.egypt{padding:70px 0 80px}.egypt .stamp{width:92px;height:92px;top:-18px}.elist li{gap:14px;padding:16px 0}.elist li:nth-child(even){margin-inline-start:8%}.egypt .wrap>p:not(.elabel){margin-bottom:34px}}
+@media (prefers-reduced-motion:reduce){.egypt .stamp{animation:none}}
+
+/* Egypt list: 10 projects, slightly smaller type */
+.elist li{font-size:clamp(1.3rem,3.2vw,2.5rem);padding:18px 0}
+.elist li:nth-child(even){margin-inline-start:clamp(20px,9%,120px)}
+@media (max-width:760px){.elist li{font-size:1.25rem;padding:14px 0}}
+
+/* Egypt heading in gold/yellow */
+.egypt h2{color:var(--champ)}
+
+/* Egypt section: green heading, green spinning circle, green background word */
+.egypt{--egypt-green:#1f4638}
+.egypt h2{color:var(--egypt-green)}
+.egypt .ghost{-webkit-text-stroke:1.5px rgba(31,70,56,.26)}
+.egypt .stamp text{fill:var(--egypt-green)}
+.egypt .stamp circle{fill:var(--egypt-green)}
+
+/* ---- Image clarity ---- */
+img{image-rendering:auto}
+.pimg img,.aimg,#dimg,.thumbs img{object-fit:cover;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#home" aria-label="NourEldin Home"><img class="wm wm-ink" src="images/logo-name-ink.png" width="429" height="86" alt="NourEldin Home"><img class="wm wm-ivory" src="images/logo-name-ivory.png" width="429" height="86" alt="" aria-hidden="true"></a>
+    <div class="scrim" id="scrim"></div>
+    <nav id="nav" aria-label="Main">
+      <button class="close" id="close" type="button" aria-label="Close menu">×</button>
+      <ul>
+        <li><a href="#home" data-en="Home" data-ar="الرئيسية">Home</a></li>
+        <li><a href="#services" data-en="Our Services" data-ar="خدماتنا">Our Services</a></li>
+        <li><a href="#projects" data-en="What We’ve Built" data-ar="ما بنيناه">What We’ve Built</a></li>
+        <li><a href="#collections" data-en="Ready to Deliver" data-ar="جاهز للتسليم">Ready to Deliver</a></li>
+        <li><a href="#contact" data-en="Contact Us" data-ar="تواصل معنا">Contact Us</a></li>
+      </ul>
+    </nav>
+    <div class="tools">
+      <a class="fav" href="#favorites" aria-label="Favorites"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6-8 11-8 11z"/></svg><span id="favcount" hidden>0</span></a>
+      <button class="lang" id="lang" type="button" aria-label="Switch language">عربي</button>
+      <a class="btn" href="#contact" data-en="Request a Quote" data-ar="اطلب عرض سعر">Request a Quote</a>
+      <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="cover" data-view="cover"><div class="bg" aria-hidden="true"></div><div class="photo" role="img" aria-label="Living room by NourEldin Home"></div></section>
+<section class="hero" data-view="home">
+  <div class="wrap">
+    <div>
+      <h1><img class="hero-n" src="images/logo-n-ivory.png" width="261" height="233" alt="NourEldin Home"><em data-en="Your Trusted Furnishing Partner" data-ar="شريكك الموثوق في التأثيث">Your Trusted Furnishing Partner</em></h1>
+      <p data-en="From design to completion: custom furniture, finishing, and execution combined under one roof to create spaces you love to live in." data-ar="من التصميم حتى الاكتمال: أثاث مخصص وتشطيب وتنفيذ مجتمعة تحت سقف واحد لصنع مساحات تحب أن تعيش فيها.">From design to completion: custom furniture, finishing, and execution combined under one roof to create spaces you love to live in.</p>
+      <div class="acts">
+        <a class="btn" href="#contact" data-en="Request a Quote" data-ar="اطلب عرض سعر">Request a Quote</a>
+        <a class="btn ghost" href="#projects" data-en="View Our Work" data-ar="شاهد أعمالنا">View Our Work</a>
+      </div>
+    </div>
+    <div class="arch"><div class="ph photo2" role="img" aria-label="Living room"></div></div>
+  </div>
+</section>
+
+<section class="about" data-view="home">
+  <div class="wrap">
+    <div class="atext">
+      <img class="aimg" src="images/about-craft.jpg" width="758" height="1018" loading="lazy" decoding="async" alt="NourEldin team carrying furniture into a home on site, over an architect's sketch: Design, Build, Transform">
+      <div class="acopy">
+      <h2 data-en="Since 1940 we made furniture. Now we make the whole home." data-ar="منذ 1940 ونحن نصنع الأثاث. واليوم نصنع البيت كله.">Since 1940 we made furniture. Now we make the whole home.</h2>
+      <p data-en="It began as a furniture business with a stubborn love for craft, and for design that outlives trends. Over the decades it grew into a name Egypt trusts, with branches in Cairo and long friendships with architects, interior designers and project teams." data-ar="بدأت كنشاط متخصص في الأثاث، يحرّكه شغف عنيد بالحرفة وبتصميم يعيش أطول من الموضات. ومع مرور العقود صارت اسمًا راسخًا في السوق المصري، بفروع في القاهرة وعلاقات طويلة مع المهندسين المعماريين ومصممي الديكور الداخلي وفرق المشروعات.">It began as a furniture business with a stubborn love for craft, and for design that outlives trends. Over the decades it grew into a name Egypt trusts, with branches in Cairo and long friendships with architects, interior designers and project teams.</p>
+      <p data-en="Then the work started to travel. Our pieces now live in projects from Florida to Abidjan, Nairobi, Dubai, Riyadh and Oman. NourEldin Home is the next chapter: all that craft, finally under one roof, planned and delivered to one standard from the first sketch to the last detail." data-ar="ثم بدأ عملنا يسافر. فأثاثنا اليوم في مشروعات من فلوريدا إلى أبيدجان ونيروبي ودبي والرياض وسلطنة عُمان. ونور الدين هوم هو الفصل التالي: كل هذه الحرفة تحت سقف واحد، تُخطَّط وتُسلَّم بمعيار واحد من أول رسمة إلى آخر تفصيلة.">Then the work started to travel. Our pieces now live in projects from Florida to Abidjan, Nairobi, Dubai, Riyadh and Oman. NourEldin Home is the next chapter: all that craft, finally under one roof, planned and delivered to one standard from the first sketch to the last detail.</p>
+      <p class="pull" data-en="Not just the years behind us, but the projects that carry our name." data-ar="ليست السنوات وحدها ما يعكس خبرتنا، بل المشروعات التي تحمل اسمنا.">Not just the years behind us, but the projects that carry our name.</p>
+      </div>
+    </div>
+    <div class="stats">
+        <div><b>1940</b><span data-en="Our story begins" data-ar="بداية حكايتنا">Our story begins</span></div>
+        <div><b>80+</b><span data-en="Years of craft" data-ar="سنة من الخبرة">Years of craft</span></div>
+        <div><b>24</b><span data-en="Countries beyond Egypt" data-ar="دول خارج مصر">Countries beyond Egypt</span></div>
+      </div>
+  </div>
+</section>
+
+<section class="about reachsec" data-view="home">
+  <div class="wrap reach">
+    <div class="head">
+      <h2 data-en="Where our work lives" data-ar="أين تعيش أعمالنا">Where our work lives</h2>
+      <p data-en="Furniture supplied to 24 countries beyond Egypt. A few of them:" data-ar="أثاث موَّرد إلى 24 دولة خارج مصر. ومن بينها:">Furniture supplied to 24 countries beyond Egypt. A few of them:</p>
+    </div>
+    <div class="rgrid">
+        <div class="rc"><h4 data-en="United States" data-ar="الولايات المتحدة الأمريكية">United States</h4><p class="city" data-en="Florida" data-ar="فلوريدا">Florida</p><p data-en="Furniture supplied to projects in Florida." data-ar="أثاث موَّرد لمشروعات في فلوريدا.">Furniture supplied to projects in Florida.</p></div>
+        <div class="rc"><h4 data-en="Côte d’Ivoire" data-ar="كوت ديفوار">Côte d’Ivoire</h4><p class="city" data-en="Abidjan" data-ar="أبيدجان">Abidjan</p><p data-en="Furniture supplied to projects in Abidjan." data-ar="أثاث موَّرد لمشروعات في أبيدجان.">Furniture supplied to projects in Abidjan.</p></div>
+        <div class="rc"><h4 data-en="Kenya" data-ar="كينيا">Kenya</h4><p class="city" data-en="Nairobi" data-ar="نيروبي">Nairobi</p><p data-en="Furniture supplied to projects in Nairobi." data-ar="أثاث موَّرد لمشروعات في نيروبي.">Furniture supplied to projects in Nairobi.</p></div>
+        <div class="rc"><h4 data-en="United Arab Emirates" data-ar="الإمارات العربية المتحدة">United Arab Emirates</h4><p class="city" data-en="Dubai & Sharjah" data-ar="دبي والشارقة">Dubai & Sharjah</p><p data-en="Furniture supplied to projects in Dubai and Sharjah." data-ar="أثاث موَّرد لمشروعات في دبي والشارقة.">Furniture supplied to projects in Dubai and Sharjah.</p></div>
+        <div class="rc"><h4 data-en="Saudi Arabia" data-ar="المملكة العربية السعودية">Saudi Arabia</h4><p class="city" data-en="Riyadh" data-ar="الرياض">Riyadh</p><p data-en="Furniture supplied to projects in Riyadh." data-ar="أثاث موَّرد لمشروعات في الرياض.">Furniture supplied to projects in Riyadh.</p></div>
+        <div class="rc"><h4 data-en="Oman" data-ar="سلطنة عُمان">Oman</h4><p class="city" data-en="Sultanate of Oman" data-ar="سلطنة عُمان">Sultanate of Oman</p><p data-en="Furniture supplied to projects across Oman." data-ar="أثاث موَّرد لمشروعات في سلطنة عُمان.">Furniture supplied to projects across Oman.</p></div>
+    </div>
+  </div>
+</section>
+<section class="egypt" data-view="home">
+  <div class="ghost" aria-hidden="true" data-en="Egypt" data-ar="مصر">Egypt</div>
+  <div class="wrap">
+    <svg class="stamp" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="sp" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs><text><textPath href="#sp" startOffset="0" textLength="284" lengthAdjust="spacing">PROUD TO PUT OUR SIGNATURE ✦ </textPath></text><circle cx="60" cy="60" r="4"/></svg>
+    <h2 data-en="Egypt" data-ar="مصر">Egypt</h2>
+    <p data-en="We are proud to put our touch here" data-ar="نفخر بأن نضع لمستنا هنا">We are proud to put our touch here</p>
+    <ol class="elist">
+        <li><span class="n">01</span><span class="nm" data-en="Prime Minister’s Office, New Administrative Capital" data-ar="مكتب رئيس الوزراء، العاصمة الإدارية">Prime Minister’s Office, New Administrative Capital</span><i></i></li>
+        <li><span class="n">02</span><span class="nm" data-en="Cabinet of Ministers" data-ar="مجلس الوزراء">Cabinet of Ministers</span><i></i></li>
+        <li><span class="n">03</span><span class="nm" data-en="Ministry of Justice" data-ar="وزارة العدل">Ministry of Justice</span><i></i></li>
+        <li><span class="n">04</span><span class="nm" data-en="Ministry of Finance" data-ar="وزارة المالية">Ministry of Finance</span><i></i></li>
+        <li><span class="n">05</span><span class="nm" data-en="Arab Organization for Industrialization: many projects" data-ar="الهيئة العربية للتصنيع: مشاريع كثيرة">Arab Organization for Industrialization: many projects</span><i></i></li>
+        <li><span class="n">06</span><span class="nm" data-en="Arab Engines Factory" data-ar="مصنع المحركات العربية">Arab Engines Factory</span><i></i></li>
+        <li><span class="n">07</span><span class="nm" data-en="Egyptian Agricultural Bank" data-ar="البنك الزراعي المصري">Egyptian Agricultural Bank</span><i></i></li>
+        <li><span class="n">08</span><span class="nm" data-en="More than one foreign embassy in Egypt" data-ar="أكثر من سفارة لدول أجنبية بمصر">More than one foreign embassy in Egypt</span><i></i></li>
+        <li><span class="n">09</span><span class="nm" data-en="A club in the New Administrative Capital" data-ar="نادٍ بالعاصمة الإدارية">A club in the New Administrative Capital</span><i></i></li>
+        <li><span class="n">10</span><span class="nm" data-en="Semaf Factory Theatre" data-ar="مسرح مصنع سيماف">Semaf Factory Theatre</span><i></i></li>
+    </ol>
+  </div>
+</section>
+
+<section class="doors" data-view="home">
+  <div class="wrap"><div class="dgrid">
+    <a href="#services"><h3 data-en="Our Services" data-ar="خدماتنا">Our Services</h3><p data-en="Design, manufacturing, finishing and delivery with one team." data-ar="تصميم وتصنيع وتشطيب وتسليم مع فريق واحد.">Design, manufacturing, finishing and delivery with one team.</p></a>
+    <a href="#collections"><h3 data-en="Ready to Deliver" data-ar="جاهز للتسليم">Ready to Deliver</h3><p data-en="Living rooms, bedrooms, kitchens and more." data-ar="غرف المعيشة والنوم والمطابخ وغيرها.">Living rooms, bedrooms, kitchens and more.</p></a>
+    <a href="#projects"><h3 data-en="What We’ve Built" data-ar="ما بنيناه">What We’ve Built</h3><p data-en="Homes we have designed, built and furnished." data-ar="بيوت صمّمناها وصنعناها وجهّزناها.">Homes we have designed, built and furnished.</p></a>
+  </div></div>
+</section>
+
+<section class="services pgtop" data-view="services">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="vis"><span class="t1" data-en="One" data-ar="رؤية">One</span> <span class="t2" data-en="Vision" data-ar="واحدة">Vision</span></h2>
+      <p class="vtags" data-en="Thoughtful Design, Precise Measurements, Exceptional Quality, Seamless Execution" data-ar="تصميم مدروس، قياسات دقيقة، جودة استثنائية، تنفيذ سلس">Thoughtful Design, Precise Measurements, Exceptional Quality, Seamless Execution</p>
+      <p class="vreal" data-en="Fully Realized" data-ar="رؤية تتحقق بالكامل">Fully Realized</p>
+    </div>
+  </div>
+</section>
+<section class="services pgbody" data-view="services">
+  <div class="wrap">
+    <div class="steps">
+      <div class="step"><b>1</b><div class="sbody"><h3 data-en="Tell us" data-ar="أخبرنا">Tell us</h3><p class="lead" data-en="Forget the catalogue. Tell us how you actually live." data-ar="انسَ الكتالوج. احكِ لنا كيف تعيش فعلًا.">Forget the catalogue. Tell us how you actually live.</p></div><ul class="sul"><li data-en="We walk your space like detectives" data-ar="نمشي في مساحتك كالمحققين">We walk your space like detectives</li><li data-en="We decode your taste, your routine and your budget" data-ar="نفكّ شفرة ذوقك وروتينك وميزانيتك">We decode your taste, your routine and your budget</li><li data-en="We agree on the plan before a single line is drawn" data-ar="نتفق على الخطة قبل أن يُرسم خط واحد">We agree on the plan before a single line is drawn</li></ul></div>
+      <div class="step"><b>2</b><div class="sbody"><h3 data-en="Meet the engineer" data-ar="قابل المهندس">Meet the engineer</h3><p class="lead" data-en="Before any wood is cut, an engineer lands on your site." data-ar="قبل أن تُقطع أي خشبة، يصل مهندس إلى موقعك.">Before any wood is cut, an engineer lands on your site.</p></div><ul class="sul"><li data-en="Every wall, corner and awkward niche, measured on site" data-ar="كل جدار وركن وزاوية عنيدة، تُقاس في موقعك">Every wall, corner and awkward niche, measured on site</li><li data-en="2D drawings so precise your room could sign them" data-ar="رسومات ثنائية الأبعاد بدقة تكاد غرفتك توقّع عليها">2D drawings so precise your room could sign them</li><li data-en="Mistakes die on paper, not in your living room" data-ar="الأخطاء تموت على الورق، لا في صالونك">Mistakes die on paper, not in your living room</li></ul></div>
+      <div class="step"><b>3</b><div class="sbody"><h3 data-en="See it first" data-ar="شاهده أولًا">See it first</h3><p class="lead" data-en="Walk through your home before it exists." data-ar="تجوّل في بيتك قبل أن يوجد.">Walk through your home before it exists.</p></div><ul class="sul"><li data-en="Layouts room by room, no room left behind" data-ar="مخططات غرفة بغرفة، ولا غرفة تُترك خلفنا">Layouts room by room, no room left behind</li><li data-en="Materials and finishes picked with you, not for you" data-ar="خامات وتشطيبات تُختار معك، لا نيابةً عنك">Materials and finishes picked with you, not for you</li><li data-en="3D visuals you approve before anything touches a saw" data-ar="تصورات ثلاثية الأبعاد تعتمدها قبل أن يقترب أي منشار">3D visuals you approve before anything touches a saw</li></ul></div>
+      <div class="step"><b>4</b><div class="sbody"><h3 data-en="Make it real" data-ar="نجعله حقيقة">Make it real</h3><p class="lead" data-en="Our hands. Our eyes. Every single stage." data-ar="أيدينا. وأعيننا. في كل مرحلة بلا استثناء.">Our hands. Our eyes. Every single stage.</p></div><ul class="sul"><li data-en="Materials chosen like we have to live with them" data-ar="خامات نختارها كأننا سنعيش معها">Materials chosen like we have to live with them</li><li data-en="Woodwork, upholstery and finishing, watched closely from the first cut" data-ar="نجارة وتنجيد وتشطيب، تحت عين مراقبة منذ أول قطعة">Woodwork, upholstery and finishing, watched closely from the first cut</li><li data-en="Follow your project growing step by step: nothing hidden, everything on spec" data-ar="تابع مشروعك وهو ينمو خطوة بخطوة: لا شيء مخفي، وكل شيء وفق المواصفات">Follow your project growing step by step: nothing hidden, everything on spec</li></ul></div>
+      <div class="step"><b>5</b><div class="sbody"><h3 data-en="Beat the clock" data-ar="اسبق الساعة">Beat the clock</h3><p class="lead" data-en="Your home, handed over ready to live in." data-ar="بيتك، يُسلَّم جاهزًا للسكن.">Your home, handed over ready to live in.</p></div><ul class="sul"><li data-en="We may quote a longer lead time, because rushing is how furniture goes wrong" data-ar="قد نذكر مدة تنفيذ أطول، لأن العجلة هي ما يُفسد الأثاث">We may quote a longer lead time, because rushing is how furniture goes wrong</li><li data-en="Then we deliver before the agreed deadline, never after it" data-ar="ثم نسلّم قبل الموعد المتفق عليه، وليس بعده">Then we deliver before the agreed deadline, never after it</li><li data-en="Installed with care, down to the last detail" data-ar="تركيب بعناية، حتى آخر تفصيلة">Installed with care, down to the last detail</li></ul></div>
+    </div>
+
+    <div class="extras">
+      <div class="head">
+        <h2 data-en="Beyond the sofa" data-ar="أبعد من الأريكة">Beyond the sofa</h2>
+        <p data-en="Same hands. Same obsession. Applied to everything around it." data-ar="الأيدي نفسها. والهوس نفسه. على كل ما حولها.">Same hands. Same obsession. Applied to everything around it.</p>
+      </div>
+      <div class="egrid">
+        <div><h4 data-en="Walls with presence" data-ar="جدران لها حضور">Walls with presence</h4><p data-en="Cladding that turns four walls into a statement." data-ar="تجاليد تحوّل أربعة جدران إلى بيان.">Cladding that turns four walls into a statement.</p></div>
+        <div><h4 data-en="Doors that make an entrance" data-ar="أبواب تصنع المدخل">Doors that make an entrance</h4><p data-en="Doors with attitude, made with the same craft as the furniture behind them." data-ar="أبواب لها شخصية، بحرفة الأثاث الذي خلفها نفسها.">Doors with attitude, made with the same craft as the furniture behind them.</p></div>
+        <div><h4 data-en="Joinery cut to your life" data-ar="نجارة على مقاس حياتك">Joinery cut to your life</h4><p data-en="Bespoke carpentry for the corner no catalogue ever imagined." data-ar="نجارة مخصصة للركن الذي لم يتخيله أي كتالوج.">Bespoke carpentry for the corner no catalogue ever imagined.</p></div>
+        <div><h4 data-en="Offices that mean business" data-ar="مكاتب جادة">Offices that mean business</h4><p data-en="Furniture for people who run things, from reception to the boardroom." data-ar="أثاث لمن يديرون الأمور، من الاستقبال إلى قاعة الاجتماعات.">Furniture for people who run things, from reception to the boardroom.</p></div>
+        <div><h4 data-en="Yachts: furniture that sails" data-ar="يخوت: أثاث يبحر">Yachts: furniture that sails</h4><p data-en="Interiors for a home that moves, built with the care of one that doesn’t." data-ar="تصميمات لبيت يتحرك، بعناية بيت لا يتحرك.">Interiors for a home that moves, built with the care of one that doesn’t.</p></div>
+        <div><h4 data-en="The garden room" data-ar="غرفة الحديقة">The garden room</h4><p data-en="Outdoor pieces finished so well, even the weather gets jealous." data-ar="قطع خارجية بتشطيب يجعل الطقس نفسه يغار.">Outdoor pieces finished so well, even the weather gets jealous.</p></div>
+      </div>
+    </div>
+    <div class="extras">
+      <div class="head">
+        <h2 data-en="Who we build for" data-ar="لمن نبني">Who we build for</h2>
+        <p data-en="Three kinds of people. One standard." data-ar="ثلاثة أنواع من الناس. معيار واحد.">Three kinds of people. One standard.</p>
+      </div>
+      <div class="egrid">
+        <div><h4 data-en="Designers" data-ar="المصممون">Designers</h4><p data-en="Need a maker who disappears behind your name? Done." data-ar="تحتاج صانعًا يختفي خلف اسمك؟ تم.">Need a maker who disappears behind your name? Done.</p></div>
+        <div><h4 data-en="Developers" data-ar="المطورون">Developers</h4><p data-en="Whole projects furnished to your requirements, with zero drama." data-ar="مشروعات كاملة تُؤثَّث وفق متطلباتك، بلا أي دراما.">Whole projects furnished to your requirements, with zero drama.</p></div>
+        <div><h4 data-en="Homeowners" data-ar="أصحاب البيوت">Homeowners</h4><p data-en="You and us: one team, from the first sketch to your first night at home." data-ar="أنت ونحن: فريق واحد، من أول رسمة إلى أول ليلة في بيتك.">You and us: one team, from the first sketch to your first night at home.</p></div>
+      </div>
+    </div>
+    <div class="partner">
+      <div>
+        <h3 data-en="Your name on the door. Our hands on the work." data-ar="اسمك على الباب. وأيدينا في العمل.">Your name on the door. Our hands on the work.</h3>
+        <p data-en="Designers, offices and developers: we can work as an extension of your team, even under your own name, so every client relationship stays yours." data-ar="للمصممين والمكاتب والمطورين: نعمل كامتداد لفريقكم، وحتى تحت اسمكم وهويتكم، لتبقى كل علاقة مع العميل لكم.">Designers, offices and developers: we can work as an extension of your team, even under your own name, so every client relationship stays yours.</p>
+      </div>
+      <a class="plink" href="#contact" data-en="Partner with us" data-ar="شاركنا العمل">Partner with us</a>
+    </div>
+  </div>
+</section>
+
+<section class="pgtop" data-view="collections">
+  <div class="wrap">
+    <div class="head"><h2 data-en="Ready to Deliver" data-ar="جاهز للتسليم">Ready to Deliver</h2></div>
+  </div>
+</section>
+<section class="pgbody" data-view="collections">
+  <div class="wrap">
+    <div class="chips" id="chips"></div>
+    <div class="shop" id="shop"></div>
+    <div class="more"><button class="btn" id="more" type="button" hidden></button></div>
+  </div>
+</section>
+
+<section data-view="favorites">
+  <div class="wrap">
+    <div class="head"><h2 data-en="Your Favorites" data-ar="مفضلتك">Your Favorites</h2><p data-en="Pieces you saved on this device." data-ar="القطع التي حفظتها على هذا الجهاز.">Pieces you saved on this device.</p></div>
+    <div class="shop" id="favgrid"></div>
+    <div id="favempty"><p data-en="You have not saved any pieces yet. Tap the heart on a piece you like." data-ar="لم تحفظ أي قطعة بعد. اضغط على القلب في القطعة التي تعجبك.">You have not saved any pieces yet. Tap the heart on a piece you like.</p><a class="btn" href="#collections" data-en="See Ready to Deliver" data-ar="تصفح الجاهز للتسليم">See Ready to Deliver</a></div>
+    <button class="btn" id="favquote" type="button" hidden data-en="Request a Quote for These" data-ar="اطلب عرض سعر لهذه القطع">Request a Quote for These</button>
+  </div>
+</section>
+
+<section class="projects" data-view="projects">
+  <div class="wrap">
+    <div class="head"><h2 data-en="What We’ve Built" data-ar="ما بنيناه">What We’ve Built</h2><p data-en="Homes we have designed, built and furnished." data-ar="بيوت صمّمناها وصنعناها وجهّزناها.">Homes we have designed, built and furnished.</p></div>
+    <div class="pgrid">
+      <div class="proj"><div class="ph"></div><h3 data-en="Project name" data-ar="اسم المشروع">Project name</h3><p data-en="Location, type" data-ar="الموقع، النوع">Location, type</p></div>
+      <div class="proj"><div class="ph b"></div><h3 data-en="Project name" data-ar="اسم المشروع">Project name</h3><p data-en="Location, type" data-ar="الموقع، النوع">Location, type</p></div>
+      <div class="proj"><div class="ph c"></div><h3 data-en="Project name" data-ar="اسم المشروع">Project name</h3><p data-en="Location, type" data-ar="الموقع، النوع">Location, type</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contactblock">
+  <div class="wrap">
+    <div>
+      <h2 data-en="Let’s plan your home" data-ar="لنخطط لبيتك معًا">Let’s plan your home</h2>
+      <ul>
+        <li><b data-en="Phone / WhatsApp" data-ar="الهاتف / واتساب">Phone / WhatsApp</b><span dir="ltr">+20 000 000 0000</span></li>
+        <li><b data-en="Showroom" data-ar="المعرض">Showroom</b><span data-en="Showroom address" data-ar="عنوان المعرض">Showroom address</span></li>
+        <li><b data-en="Instagram" data-ar="إنستجرام">Instagram</b><span dir="ltr">@noureldinfurniture04</span></li>
+      </ul>
+    </div>
+    <form id="form">
+      <label><span data-en="Full name" data-ar="الاسم بالكامل">Full name</span><input required name="n"></label>
+      <label><span data-en="Phone" data-ar="رقم الهاتف">Phone</span><input required name="p" type="tel" dir="ltr"></label>
+      <label><span data-en="Project type" data-ar="نوع المشروع">Project type</span>
+        <select name="t"><option data-en="Complete home" data-ar="بيت متكامل">Complete home</option><option data-en="Single room" data-ar="غرفة واحدة">Single room</option><option data-en="Office" data-ar="مكتب">Office</option></select></label>
+      <label><span data-en="Tell us about your project" data-ar="حدثنا عن مشروعك">Tell us about your project</span><textarea rows="3" name="m"></textarea></label>
+      <button class="btn" type="submit" data-en="Send Request" data-ar="أرسل الطلب">Send Request</button>
+      <div id="note" role="status"></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="flogo" href="#home" aria-label="NourEldin Home"><img class="lk" src="images/logo-lockup-ivory.png" alt="NourEldin - Make the details count"><i data-en="Home" data-ar="هوم">Home</i></a>
+    <div class="soc">
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".7" fill="currentColor"/></svg></a>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M15 3.5h-2A3.500 3.500 0 0 0 9.500 7v3H7v3.500h2.500V21H13v-7.500h2.500l.5-3.500H13V7.500c0-.3.2-.5.5-.5H15z"/></svg></a>
+      <a href="https://wa.me/" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M3.500 20.500l1.300-4.200A8.500 8.500 0 1 1 8 19.300z"/><path d="M9 8.500c0 3 3 6 6 6l1-1.500-2-1-1 .8c-.8-.4-1.600-1.200-2-2l.8-1-1-2z"/></svg></a>
+      <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M14 3v11.500a3.500 3.500 0 1 1-3.500-3.500"/><path d="M14 3c.3 2.300 1.800 3.800 4 4"/></svg></a>
+    </div>
+    <div class="fr">
+      <span class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-6.500-5.600-6.500-11a6.500 6.500 0 0 1 13 0C18.500 15.400 12 21 12 21z"/><circle cx="12" cy="10" r="2.300"/></svg><span data-en="Showroom address, City, Egypt" data-ar="عنوان المعرض، المدينة، مصر">Showroom address, City, Egypt</span></span>
+      <span data-en="© 2026 NourEldin Home. All rights reserved." data-ar="© 2026 نور الدين هوم. جميع الحقوق محفوظة.">© 2026 NourEldin Home. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<dialog id="addbox" aria-labelledby="atitle">
+  <form id="addform">
+    <h2 id="atitle" data-en="Add a piece" data-ar="إضافة قطعة">Add a piece</h2>
+    <label><span data-en="Photos (up to 6)" data-ar="الصور (حتى 6)">Photos (up to 6)</span><input type="file" id="afile" accept="image/*" multiple></label>
+    <div id="thumbs" class="thumbs"></div>
+    <label><span data-en="Name (English)" data-ar="الاسم (إنجليزي)">Name (English)</span><input name="nen"></label>
+    <label><span data-en="Name (Arabic)" data-ar="الاسم (عربي)">Name (Arabic)</span><input name="nar" dir="rtl"></label>
+    <label><span data-en="Category" data-ar="القسم">Category</span><select id="acat" name="acat"></select></label>
+    <label><span data-en="Description (English)" data-ar="الوصف (إنجليزي)">Description (English)</span><textarea name="den" rows="3"></textarea></label>
+    <label><span data-en="Description (Arabic)" data-ar="الوصف (عربي)">Description (Arabic)</span><textarea name="dar" rows="3" dir="rtl"></textarea></label>
+    <div id="anote" role="status"></div>
+    <div class="dacts"><button class="btn" type="submit" data-en="Save" data-ar="حفظ">Save</button><button class="btn line" type="button" data-close data-en="Cancel" data-ar="إلغاء">Cancel</button></div>
+    <button type="button" class="linkbtn" id="aexport" data-en="Download my added pieces (backup)" data-ar="تنزيل القطع التي أضفتها (نسخة احتياطية)">Download my added pieces (backup)</button>
+    <p class="hint" data-en="Pieces you add are saved on this device only." data-ar="القطع التي تضيفها تُحفظ على هذا الجهاز فقط.">Pieces you add are saved on this device only.</p>
+  </form>
+</dialog>
+
+<dialog id="detail" aria-labelledby="dname">
+  <button type="button" class="dclose" data-close aria-label="Close">×</button>
+  <div class="dwrap">
+    <div class="dgal"><img id="dimg" alt=""><div id="dph" class="ph" hidden></div><div id="dthumbs" class="thumbs"></div></div>
+    <div class="dinfo"><h2 id="dname"></h2><p id="dcat" class="dcat"></p><p id="ddesc"></p>
+      <div class="dacts"><button class="btn" id="dquote" type="button" data-en="Request a Quote" data-ar="اطلب عرض سعر">Request a Quote</button><button class="btn line" id="ddel" type="button" hidden data-en="Delete" data-ar="حذف">Delete</button></div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+/* Site settings. Edit only this file for these values. */
+window.SITE_CONFIG = {
+  // Paste the Google Apps Script Web App URL here to save contact requests in Google Sheets.
+  sheetUrl: '',
+  // Shows the "+" tile on the Collections page so you can add pieces (photos + description).
+  // Pieces are saved in this browser only. Set to false before the public launch.
+  showAddButton: true
+};
+
+</script>
+<script>
+/* Product list for the Collections page.
+   To add a piece: copy one line, give it a new unique id, set its category (cat),
+   its names (en / ar) and its photo path (img). Leave img empty to show a placeholder.
+   Example photo: img: 'images/products/sofa-nour.jpg' */
+window.CATEGORIES = [
+  { id: 'living',   en: 'Living Rooms',      ar: 'غرف المعيشة' },
+  { id: 'bedrooms', en: 'Bedrooms',          ar: 'غرف النوم' },
+  { id: 'dining',   en: 'Dining',            ar: 'غرف الطعام' },
+  { id: 'kitchens', en: 'Kitchens',          ar: 'المطابخ' },
+  { id: 'kids',     en: 'Kids’ Rooms',       ar: 'غرف الأطفال' },
+  { id: 'office',   en: 'Offices & Outdoor', ar: 'المكاتب والمساحات الخارجية' }
+];
+window.PRODUCTS = [
+  { id: 'living-1',   cat: 'living',   en: 'Product name', ar: 'اسم المنتج', img: '' },
+  { id: 'living-2',   cat: 'living',   en: 'Product name', ar: 'اسم المنتج', img: '' },
+  { id: 'bedrooms-1', cat: 'bedrooms', en: 'Product name', ar: 'اسم المنتج', img: '' },
+  { id: 'bedrooms-2', cat: 'bedrooms', en: 'Product name', ar: 'اسم المنتج', img: '' },
+  { id: 'dining-1',   cat: 'dining',   en: 'Product name', ar: 'اسم المنتج', img: '' },
+  { id: 'dining-2',   cat: 'dining',   en: 'Product name', ar: 'اسم المنتج', img: '' },
+  { id: 'kitchens-1', cat: 'kitchens', en: 'Product name', ar: 'اسم المنتج', img: '' },
+  { id: 'kitchens-2', cat: 'kitchens', en: 'Product name', ar: 'اسم المنتج', img: '' },
+  { id: 'kids-1',     cat: 'kids',     en: 'Product name', ar: 'اسم المنتج', img: '' },
+  { id: 'kids-2',     cat: 'kids',     en: 'Product name', ar: 'اسم المنتج', img: '' },
+  { id: 'office-1',   cat: 'office',   en: 'Product name', ar: 'اسم المنتج', img: '' },
+  { id: 'office-2',   cat: 'office',   en: 'Product name', ar: 'اسم المنتج', img: '' }
+];
+
+</script>
+<script>
+/* NourEldin Home - behaviour
+   1. Language switch (EN/AR): every element with data-en / data-ar is swapped.
+   2. Pages: the URL hash (#home, #about ...) decides which [data-view] shows.
+   3. Side menu, contact form. */
+(function(){
+  var SHEET_URL=(window.SITE_CONFIG&&window.SITE_CONFIG.sheetUrl)||'';
+  var lang='en',btn=document.getElementById('lang'),nav=document.getElementById('nav');
+  var arLoaded=false;
+  function loadAr(){if(arLoaded)return;arLoaded=true;var k=document.createElement('link');k.rel='stylesheet';k.href='https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500&display=swap';document.head.appendChild(k)}
+  function apply(l){
+    if(l==='ar')loadAr();
+    lang=l;var h=document.documentElement;
+    h.lang=l;h.dir=l==='ar'?'rtl':'ltr';
+    document.querySelectorAll('[data-en]').forEach(function(e){var v=e.getAttribute('data-'+l);if(v!==null&&v.trim()!=='')e.textContent=v;});
+    btn.textContent=l==='ar'?'English':'عربي';
+    document.title=l==='ar'?'نور الدين هوم':'NourEldin Home';
+    try{localStorage.setItem('ne-lang',l)}catch(e){}
+    if(window.renderAll)window.renderAll();
+  }
+  btn.addEventListener('click',function(){apply(lang==='en'?'ar':'en')});
+  var burger=document.getElementById('burger'),scrim=document.getElementById('scrim');
+  function setMenu(o){nav.classList.toggle('open',o);scrim.classList.toggle('on',o);burger.setAttribute('aria-expanded',o?'true':'false');document.body.style.overflow=o?'hidden':'';}
+  burger.addEventListener('click',function(){setMenu(!nav.classList.contains('open'))});
+  scrim.addEventListener('click',function(){setMenu(false)});
+  document.getElementById('close').addEventListener('click',function(){setMenu(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
+  nav.addEventListener('click',function(e){if(e.target.tagName==='A')setMenu(false)});
+  var s=null;try{s=localStorage.getItem('ne-lang')}catch(e){}
+  if(s==='ar')apply('ar');
+  document.getElementById('form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var f=e.target,note=document.getElementById('note'),
+    ok=lang==='ar'?'شكرًا لك. سنتواصل معك قريبًا.':'Thank you. We will contact you shortly.',
+    bad=lang==='ar'?'تعذّر الإرسال. تواصل معنا عبر واتساب.':'Could not send. Please contact us on WhatsApp.';
+    if(!SHEET_URL){note.textContent=ok;f.reset();return;}
+    var d={name:f.n.value,phone:f.p.value,type:f.t.value,message:f.m.value,lang:lang,page:location.href};
+    fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)})
+      .then(function(){note.textContent=ok;f.reset();})
+      .catch(function(){note.textContent=bad;});
+  });
+  var names=['cover','home','favorites','services','collections','projects','contact'],
+      views=document.querySelectorAll('[data-view]'),block=document.getElementById('contactblock'),links=document.querySelectorAll('nav a');
+  function route(){
+    var h=location.hash.slice(1);if(names.indexOf(h)<0)h='cover';
+    views.forEach(function(v){v.hidden=v.getAttribute('data-view').split(' ').indexOf(h)<0});
+    block.hidden=(h==='cover');
+    document.body.className=h==='cover'?'is-cover':(h==='services'?'is-green':'');
+    var tc=document.querySelector('meta[name=theme-color]');if(tc)tc.setAttribute('content',h==='cover'?'#0f1a17':(h==='services'?'#0f1a17':'#f6f1e7'));
+    links.forEach(function(a){var tg=a.getAttribute('href');if(tg==='#'+h||(tg==='#cover'&&h==='home'))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+    setMenu(false);
+    window.scrollTo(0,0);
+  }
+  /* ---- Products and favorites ---- */
+  var PRODUCTS=window.PRODUCTS||[],BASE=PRODUCTS.slice(),addOn=!(window.SITE_CONFIG&&window.SITE_CONFIG.showAddButton===false),CATS=window.CATEGORIES||[],favs=[],cat=CATS.length?CATS[0].id:'all',shown=24,
+  HEART='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6-8 11-8 11z"/></svg>',
+  T={save:{en:'Save to favorites',ar:'أضف إلى المفضلة'},saved:{en:'Remove from favorites',ar:'إزالة من المفضلة'},all:{en:'All',ar:'الكل'},addp:{en:'Add a piece',ar:'إضافة قطعة'},bad:{en:'Please write a name and choose a category.',ar:'اكتب اسم القطعة واختر القسم.'},fail:{en:'Could not save on this device.',ar:'تعذّر الحفظ على هذا الجهاز.'},del:{en:'Delete this piece?',ar:'حذف هذه القطعة؟'},more:{en:'Show more',ar:'عرض المزيد'},msg:{en:'I am interested in: ',ar:'أنا مهتم بالقطع التالية: '}};
+  try{favs=JSON.parse(localStorage.getItem('ne-favs')||'[]')}catch(e){favs=[]}
+  function t(k){return T[k][lang]}
+  function esc(x){return String(x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function catName(id){for(var i=0;i<CATS.length;i++)if(CATS[i].id===id)return CATS[i][lang];return ''}
+  function card(p,i){
+    var on=favs.indexOf(p.id)>-1,
+    src=p.img||(p.imgs&&p.imgs[0])||'',
+    im=src?'<img src="'+esc(src)+'" decoding="async" alt="'+esc(p[lang])+'" loading="lazy">':'<div class="ph '+['','b','c'][i%3]+'"></div>';
+    return '<article class="pc" data-id="'+esc(p.id)+'"><div class="pimg" data-open>'+im+'<button class="heart" type="button" data-id="'+esc(p.id)+'" aria-pressed="'+on+'" aria-label="'+esc(on?t('saved'):t('save'))+'">'+HEART+'</button></div><h3><button type="button" class="pname" data-open>'+esc(p[lang])+'</button></h3><p>'+esc(catName(p.cat))+'</p>'+(p['desc_'+lang]?'<p class="pdesc">'+esc(p['desc_'+lang])+'</p>':'')+'</article>';
+  }
+  function renderShop(){
+    var c=document.getElementById('chips'),g=document.getElementById('shop');if(!c||!g)return;
+    var s='';
+    CATS.forEach(function(k){s+='<button type="button" class="chip'+(cat===k.id?' on':'')+'" data-cat="'+k.id+'">'+esc(k[lang])+'</button>'});
+    c.innerHTML=s;
+    var list=PRODUCTS.filter(function(p){return cat==='all'||p.cat===cat}),m=document.getElementById('more');
+    g.innerHTML=list.slice(0,shown).map(card).join('')+(addOn?'<button type="button" class="addtile" id="addbtn" aria-label="'+esc(t('addp'))+'"><i>+</i><span>'+esc(t('addp'))+'</span></button>':'');
+    if(m){m.hidden=list.length<=shown;m.textContent=t('more')}
+  }
+  function renderFavs(){
+    var items=PRODUCTS.filter(function(p){return favs.indexOf(p.id)>-1});
+    document.getElementById('favgrid').innerHTML=items.map(card).join('');
+    document.getElementById('favempty').hidden=items.length>0;
+    document.getElementById('favquote').hidden=items.length===0;
+  }
+  function renderCount(){
+    var n=document.getElementById('favcount');n.textContent=favs.length;n.hidden=!favs.length;
+    document.querySelector('.fav').setAttribute('aria-label',lang==='ar'?'المفضلة':'Favorites');
+  }
+  window.renderAll=function(){renderShop();renderFavs();renderCount()};
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('.heart'),c=e.target.closest('.chip');
+    if(b){
+      var id=b.getAttribute('data-id'),i=favs.indexOf(id);
+      if(i>-1)favs.splice(i,1);else favs.push(id);
+      try{localStorage.setItem('ne-favs',JSON.stringify(favs))}catch(x){}
+      var on=favs.indexOf(id)>-1;
+      document.querySelectorAll('.heart').forEach(function(x){
+        if(x.getAttribute('data-id')!==id)return;
+        x.setAttribute('aria-pressed',on);x.setAttribute('aria-label',on?t('saved'):t('save'));
+        if(on){x.classList.remove('pop');void x.offsetWidth;x.classList.add('pop')}
+      });
+      renderCount();renderFavs();return;
+    }
+    if(e.target.closest('#more')){shown+=24;renderShop();return}
+    if(c){cat=c.getAttribute('data-cat');shown=24;renderShop();return}
+    if(e.target.closest('#favquote')){
+      var names=PRODUCTS.filter(function(p){return favs.indexOf(p.id)>-1}).map(function(p){return p[lang]+' ('+catName(p.cat)+')'});
+      document.querySelector('#form [name=m]').value=t('msg')+names.join(', ');
+      location.hash='#contact';
+    }
+  });
+  window.renderAll();
+  /* ---- "+" add pieces: saved in this browser (IndexedDB) ---- */
+  var DB=null,files=[],curImgs=[];
+  function $(i){return document.getElementById(i)}
+  function db(){return new Promise(function(ok,no){if(DB)return ok(DB);if(!window.indexedDB)return no();var r=indexedDB.open('ne-db',1);r.onupgradeneeded=function(){r.result.createObjectStore('products',{keyPath:'id'})};r.onsuccess=function(){DB=r.result;ok(DB)};r.onerror=no})}
+  function dbDo(mode,fn){return db().then(function(d){return new Promise(function(ok,no){var q=fn(d.transaction('products',mode).objectStore('products'));q.onsuccess=function(){ok(q.result||[])};q.onerror=no})})}
+  function loadAdded(){dbDo('readonly',function(s){return s.getAll()}).then(function(a){a.sort(function(x,y){return y.at-x.at});PRODUCTS=a.concat(BASE);window.renderAll()}).catch(function(){})}
+  function shrink(file){return new Promise(function(res,rej){var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var s=Math.min(1,1600/Math.max(im.width,im.height)),cv=document.createElement('canvas');cv.width=Math.round(im.width*s);cv.height=Math.round(im.height*s);cv.getContext('2d').drawImage(im,0,0,cv.width,cv.height);res(cv.toDataURL('image/jpeg',.88))};im.onerror=rej;im.src=r.result};r.onerror=rej;r.readAsDataURL(file)})}
+  function drawThumbs(){$('thumbs').innerHTML=files.map(function(s,i){return '<button type="button" data-rm="'+i+'" aria-label="Remove"><img src="'+s+'" alt=""></button>'}).join('')}
+  function findP(id){return PRODUCTS.filter(function(x){return x.id===id})[0]}
+  function openDetail(id){
+    var p=findP(id),d=$('detail');if(!p||!d)return;
+    curImgs=(p.imgs&&p.imgs.length)?p.imgs:(p.img?[p.img]:[]);
+    var m=$('dimg');m.hidden=!curImgs.length;$('dph').hidden=!!curImgs.length;if(curImgs.length)m.src=curImgs[0];
+    $('dthumbs').innerHTML=curImgs.length>1?curImgs.map(function(s,i){return '<button type="button" class="dth" data-i="'+i+'"><img src="'+s+'" alt=""></button>'}).join(''):'';
+    $('dname').textContent=p[lang];$('dcat').textContent=catName(p.cat);$('ddesc').textContent=p['desc_'+lang]||'';
+    $('ddel').hidden=!p.local;d.setAttribute('data-id',id);d.showModal();
+  }
+  if($('addbox')){
+    $('afile').addEventListener('change',function(e){
+      var list=Array.prototype.slice.call(e.target.files).slice(0,6-files.length);
+      Promise.all(list.map(shrink)).then(function(r){files=files.concat(r).slice(0,6);drawThumbs()}).catch(function(){});
+      e.target.value='';
+    });
+    $('addform').addEventListener('submit',function(e){
+      e.preventDefault();var f=e.target,en=f.nen.value.trim(),ar=f.nar.value.trim(),de=f.den.value.trim(),da=f.dar.value.trim();
+      if(!(en||ar)||!f.acat.value){$('anote').textContent=t('bad');return}
+      var p={id:'u-'+Date.now(),at:Date.now(),local:true,cat:f.acat.value,en:en||ar,ar:ar||en,desc_en:de||da,desc_ar:da||de,imgs:files.slice(),img:files[0]||''};
+      dbDo('readwrite',function(s){return s.put(p)}).then(function(){cat=p.cat;shown=24;$('addbox').close();loadAdded()}).catch(function(){$('anote').textContent=t('fail')});
+    });
+    document.addEventListener('click',function(e){
+      if(e.target.closest('.heart'))return;
+      if(e.target.closest('#addbtn')){
+        $('acat').innerHTML=CATS.map(function(k){return '<option value="'+k.id+'">'+esc(k[lang])+'</option>'}).join('');
+        $('addform').reset();$('acat').value=cat;files=[];drawThumbs();$('anote').textContent='';$('addbox').showModal();return;
+      }
+      var rm=e.target.closest('[data-rm]');if(rm){files.splice(+rm.getAttribute('data-rm'),1);drawThumbs();return}
+      var th=e.target.closest('.dth');if(th){$('dimg').src=curImgs[+th.getAttribute('data-i')];return}
+      var op=e.target.closest('[data-open]');if(op){var c=op.closest('.pc');if(c)openDetail(c.getAttribute('data-id'));return}
+      var cl=e.target.closest('[data-close]');if(cl){cl.closest('dialog').close();return}
+      if(e.target.id==='detail'){e.target.close();return}
+      if(e.target.closest('#ddel')){var id=$('detail').getAttribute('data-id');if(confirm(t('del')))dbDo('readwrite',function(s){return s.delete(id)}).then(function(){$('detail').close();loadAdded()});return}
+      if(e.target.closest('#dquote')){var p=findP($('detail').getAttribute('data-id'));if(p){document.querySelector('#form [name=m]').value=t('msg')+p[lang]+' ('+catName(p.cat)+')'}$('detail').close();location.hash='#contact';return}
+      if(e.target.closest('#aexport')){dbDo('readonly',function(s){return s.getAll()}).then(function(a){var l=document.createElement('a');l.href=URL.createObjectURL(new Blob([JSON.stringify(a)],{type:'application/json'}));l.download='noureldin-added-pieces.json';l.click()});}
+    });
+    loadAdded();
+  }
+  /* Logo: on the Home page it goes back to the Cover; on every other page (Cover, Services, Collections, Projects, Favorites, Contact) it goes to Home */
+  document.querySelectorAll('.logo,.flogo').forEach(function(a){a.addEventListener('click',function(e){
+    e.preventDefault();
+    location.hash=(location.hash==='#home')?'#cover':'#home';
+  })});
+  window.addEventListener('hashchange',route);route();
+})();
+
+</script>
+</body>
+</html>
