@@ -674,7 +674,7 @@ html[dir=rtl] .pres:nth-child(even) .pres-copy{direction:rtl}
 .pres:focus-visible{outline:2px solid var(--champ);outline-offset:4px}
 .pres-copy{display:flex;flex-direction:column;justify-content:center;padding:42px 40px;gap:8px;background:linear-gradient(180deg,#141e1b,#0f1815)}
 .pres .pnum{font:400 1.15rem var(--serif);letter-spacing:.28em;color:var(--champ)}
-.pres .ploc{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(243,237,225,.62);margin:0}
+.pres .ploc{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(243,237,225,.62);margin:2px 0 0}
 .pres h3{font-size:clamp(1.8rem,3.2vw,2.85rem);margin:6px 0 0;color:var(--ivory);max-width:12em}
 .pres .pmedia{font-size:.8rem;letter-spacing:.08em;color:rgba(243,237,225,.5);margin-top:10px}
 .pres .penter{margin-top:22px;font:400 .78rem var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--champ);display:inline-flex;align-items:center;gap:10px}

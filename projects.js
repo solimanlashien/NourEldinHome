@@ -1,6 +1,7 @@
 /* Projects page: one editorial panel per residence; tap to open its photo + video gallery.
    Media lives in images/projects/pN/ (01.webp, t01.webp ..., c.webp cover, v1.mp4, v1.jpg). */
 (function(){
+  var SHOW_HIDDEN=false;
   var ALL=[
     {n:1,imgs:6,vids:0,en:"Doha",ar:"الدوحة",cEn:"",cAr:""},
     {n:2,imgs:27,vids:0,en:"Mivida",ar:"ميفيدا",cEn:"New Cairo",cAr:"القاهرة الجديدة"},
@@ -13,8 +14,9 @@
     {n:8,hide:1,imgs:8,vids:2,en:"Ora",ar:"أورا",cEn:"Giza",cAr:"الجيزة"},
     {n:10,hide:1,imgs:10,vids:2,en:"Katameya Residence",ar:"القطامية ريزيدنس",cEn:"New Cairo",cAr:"القاهرة الجديدة"}
   ];
-  /* Cards with hide:1 are not shown. Remove hide:1 to show a card again. */
-  var P=ALL.filter(function(x){return !x.hide});
+  /* Projects 7-10 (New Giza, Palm Hills, Ora, Katameya) are hidden for now.
+     To show them all again: set SHOW_HIDDEN to true (or delete hide:1 from a single line to show just that one). */
+  var P=ALL.filter(function(x){return SHOW_HIDDEN||!x.hide});
   window.PROJECTS=P;
   var $=function(i){return document.getElementById(i)},grid=$('pgrid'),dlg=$('pgal'),nav=$('pnav');
   if(!grid||!dlg)return;
@@ -43,8 +45,8 @@
       '<span class="pres-fig">'+(cover?'<img src="'+cover+'" alt="" loading="lazy" decoding="async">':'')+
       (p.vids?'<span class="pplay" aria-hidden="true">▶</span>':'')+'</span>'+
       '<span class="pres-copy"><span class="pnum">'+pad(k+1)+'</span>'+
-      (le||la?'<p class="ploc" data-en="'+esc(le)+'" data-ar="'+esc(la)+'">'+esc(loc)+'</p>':'')+
       '<h3 data-en="'+esc(p.en)+'" data-ar="'+esc(p.ar)+'">'+esc(l==='ar'?p.ar:p.en)+'</h3>'+
+      (le||la?'<p class="ploc" data-en="'+esc(le)+'" data-ar="'+esc(la)+'">'+esc(loc)+'</p>':'')+
       '<p class="pmedia" data-en="'+esc(media(p,'en'))+'" data-ar="'+esc(media(p,'ar'))+'">'+esc(media(p,l))+'</p>'+
       '<span class="penter" data-en="'+esc(viewLbl('en'))+'" data-ar="'+esc(viewLbl('ar'))+'">'+esc(viewLbl(l))+'</span></span></button>';
   }).join('');
