@@ -1,18 +1,20 @@
 /* Projects page: one editorial panel per residence; tap to open its photo + video gallery.
    Media lives in images/projects/pN/ (01.webp, t01.webp ..., c.webp cover, v1.mp4, v1.jpg). */
 (function(){
-  var P=[
+  var ALL=[
     {n:1,imgs:6,vids:0,en:"Doha",ar:"الدوحة",cEn:"",cAr:""},
     {n:2,imgs:27,vids:0,en:"Mivida",ar:"ميفيدا",cEn:"New Cairo",cAr:"القاهرة الجديدة"},
     {n:3,imgs:27,vids:0,en:"Mountain View",ar:"ماونتن فيو",cEn:"New Cairo",cAr:"القاهرة الجديدة"},
     {n:4,imgs:13,vids:0,en:"Madinaty",ar:"مدينتي",cEn:"New Cairo",cAr:"القاهرة الجديدة"},
     {n:5,imgs:13,vids:0,en:"Swan Lake",ar:"سوان ليك",cEn:"New Cairo",cAr:"القاهرة الجديدة"},
     {n:9,imgs:19,vids:1,en:"Diplo",ar:"ديبلو",cEn:"North Coast",cAr:"الساحل الشمالي"},
-    {n:6,imgs:22,vids:5,en:"New Giza",ar:"نيو جيزة",cEn:"",cAr:""},
-    {n:7,imgs:33,vids:6,en:"Palm Hills",ar:"بالم هيلز",cEn:"Giza",cAr:"الجيزة"},
-    {n:8,imgs:8,vids:2,en:"Ora",ar:"أورا",cEn:"Giza",cAr:"الجيزة"},
-    {n:10,imgs:10,vids:2,en:"Katameya Residence",ar:"القطامية ريزيدنس",cEn:"New Cairo",cAr:"القاهرة الجديدة"}
+    {n:6,hide:1,imgs:22,vids:5,en:"New Giza",ar:"نيو جيزة",cEn:"",cAr:""},
+    {n:7,hide:1,imgs:33,vids:6,en:"Palm Hills",ar:"بالم هيلز",cEn:"Giza",cAr:"الجيزة"},
+    {n:8,hide:1,imgs:8,vids:2,en:"Ora",ar:"أورا",cEn:"Giza",cAr:"الجيزة"},
+    {n:10,hide:1,imgs:10,vids:2,en:"Katameya Residence",ar:"القطامية ريزيدنس",cEn:"New Cairo",cAr:"القاهرة الجديدة"}
   ];
+  /* Cards with hide:1 are not shown. Remove hide:1 to show a card again. */
+  var P=ALL.filter(function(x){return !x.hide});
   window.PROJECTS=P;
   var $=function(i){return document.getElementById(i)},grid=$('pgrid'),dlg=$('pgal'),nav=$('pnav');
   if(!grid||!dlg)return;

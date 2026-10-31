@@ -817,9 +817,10 @@ html[lang=ar] .services.pgtop .head h2,html[lang=ar] .services.pgtop .head p.vre
 .elist::before{content:"";position:absolute;z-index:-1;top:50%;inset-inline-end:2%;width:min(42%,380px);aspect-ratio:152/138;transform:translateY(-50%);background:var(--egypt-green);opacity:.09;-webkit-mask:url(images/egypt-mark.png) no-repeat center/contain;mask:url(images/egypt-mark.png) no-repeat center/contain;pointer-events:none}
 @media (max-width:760px){.elist::before{width:62%;opacity:.07}}
 
-/* ===== Egypt: circle on the far left, text on the opposite side, both vertically centered ===== */
-.egypt .esig{display:flex;align-items:center;justify-content:space-between;gap:24px}
-.egypt .esig .stamp{order:0;margin:0}
-.egypt .esig p{order:1;text-align:end;max-width:24em}
-html[dir=ltr] .egypt .esig{direction:ltr}
-@media (max-width:760px){.egypt .esig{gap:14px}.egypt .esig p{max-width:14em}}
+/* ===== Egypt: text starts at the left edge (same as "Egypt"), circle on the far right, vertically centered on the text ===== */
+.egypt .esig{display:flex;align-items:center;justify-content:space-between;gap:24px;direction:ltr}
+.egypt .esig p{order:0;text-align:left;margin:0}
+.egypt .esig .stamp{order:1;flex:none;margin:0}
+html[lang=ar] .egypt .esig{direction:rtl}
+html[lang=ar] .egypt .esig p{text-align:right}
+@media (max-width:760px){.egypt .esig{gap:14px}}
