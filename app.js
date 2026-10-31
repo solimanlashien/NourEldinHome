@@ -4,7 +4,7 @@
    3. Side menu, contact form. */
 (function(){
   var SHEET_URL=(window.SITE_CONFIG&&window.SITE_CONFIG.sheetUrl)||'',WA_NUM=String((window.SITE_CONFIG&&window.SITE_CONFIG.whatsappNumber)||'').replace(/\D/g,'');
-  if(WA_NUM){document.querySelectorAll('.soc a[aria-label=WhatsApp]').forEach(function(x){x.href='https://wa.me/'+WA_NUM})}
+  if(WA_NUM){document.querySelectorAll('.soc a[aria-label=WhatsApp],.wafloat').forEach(function(x){x.href='https://wa.me/'+WA_NUM})}
   var lang='en',btn=document.getElementById('lang'),nav=document.getElementById('nav');
   var arLoaded=false;
   function loadAr(){if(arLoaded)return;arLoaded=true;var k=document.createElement('link');k.rel='stylesheet';k.href='https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500&display=swap';document.head.appendChild(k)}
@@ -14,7 +14,7 @@
     h.lang=l;h.dir=l==='ar'?'rtl':'ltr';
     document.querySelectorAll('[data-en]').forEach(function(e){var v=e.getAttribute('data-'+l);if(v!==null&&v.trim()!=='')e.textContent=v;});
     btn.textContent=l==='ar'?'English':'عربي';
-    [['.logo','NourEldin Home','نور الدين هوم'],['.flogo','NourEldin Home','نور الدين هوم'],['#nav','Main','القائمة الرئيسية'],['#close','Close menu','إغلاق القائمة'],['#lang','Switch language','تغيير اللغة'],['#burger','Menu','القائمة'],['.cover .photo','Living room by NourEldin Home','غرفة معيشة من نور الدين هوم'],['.arch .ph','Living room','غرفة معيشة'],['.soc a[aria-label=Instagram]','Instagram','إنستجرام'],['.soc a[aria-label=Facebook]','Facebook','فيسبوك'],['.soc a[aria-label=WhatsApp]','WhatsApp','واتساب'],['.soc a[aria-label=TikTok]','TikTok','تيك توك'],['.dclose','Close','إغلاق'],['#cue','Scroll down','مرر للأسفل']].forEach(function(a){document.querySelectorAll(a[0]).forEach(function(e){e.setAttribute('aria-label',l==='ar'?a[2]:a[1])})});
+    [['.logo','NourEldin Home','نور الدين هوم'],['.flogo','NourEldin Home','نور الدين هوم'],['#nav','Main','القائمة الرئيسية'],['#close','Close menu','إغلاق القائمة'],['#lang','Switch language','تغيير اللغة'],['#burger','Menu','القائمة'],['.cover .photo','Living room by NourEldin Home','غرفة معيشة من نور الدين هوم'],['.arch .ph','Living room','غرفة معيشة'],['.soc a[aria-label=Instagram]','Instagram','إنستجرام'],['.soc a[aria-label=Facebook]','Facebook','فيسبوك'],['.soc a[aria-label=WhatsApp]','WhatsApp','واتساب'],['.wafloat','WhatsApp','واتساب'],['.soc a[aria-label=TikTok]','TikTok','تيك توك'],['.dclose','Close','إغلاق'],['#cue','Scroll down','مرر للأسفل']].forEach(function(a){document.querySelectorAll(a[0]).forEach(function(e){e.setAttribute('aria-label',l==='ar'?a[2]:a[1])})});
     document.querySelectorAll('.hero-n,.aimg').forEach(function(e){if(!e.dataset.alt)e.dataset.alt=e.alt;if(e.classList.contains('hero-n'))e.alt=l==='ar'?'نور الدين هوم':e.dataset.alt});
     var md=document.querySelector('meta[name=description]');if(md){if(!md.dataset.en)md.dataset.en=md.content;md.content=l==='ar'?'نور الدين هوم - بيوت متكاملة من الألف إلى الياء. أثاث وتصميم وتشطيب وتسليم.':md.dataset.en}
     document.title=l==='ar'?'نور الدين هوم':'NourEldin Home';
