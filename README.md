@@ -31,3 +31,6 @@ On the Collections page the first tile is a **+**. It opens a form (photos, Engl
 
 ## Ready to Deliver: search, filter, sort
 The search box matches every word you type against the name and description (English and Arabic, ignoring accents and Arabic letter variants). Below it: Style chips, Type menu and Sort by menu. Product photos are in `images/products/` (`c01-c35` classic catalogue, `s01-s38` Soft Living 2027).
+
+## Projects page
+`projects.js` holds the project list (name and location in English/Arabic, number of photos and videos). Each project's media is in `images/projects/pN/` (`01.webp`..., thumbnails `t01.webp`..., cover `c.webp`, videos `v1.mp4` with poster `v1.jpg`). Tapping a card opens a gallery with swipe / arrows, thumbnails and videos. To add a project: add its folder under `images/projects/` and one line in `projects.js`.

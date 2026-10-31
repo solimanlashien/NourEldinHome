@@ -3,7 +3,8 @@
    2. Pages: the URL hash (#home, #about ...) decides which [data-view] shows.
    3. Side menu, contact form. */
 (function(){
-  var SHEET_URL=(window.SITE_CONFIG&&window.SITE_CONFIG.sheetUrl)||'';
+  var SHEET_URL=(window.SITE_CONFIG&&window.SITE_CONFIG.sheetUrl)||'',WA_NUM=String((window.SITE_CONFIG&&window.SITE_CONFIG.whatsappNumber)||'').replace(/\D/g,'');
+  if(WA_NUM){document.querySelectorAll('.soc a[aria-label=WhatsApp]').forEach(function(x){x.href='https://wa.me/'+WA_NUM})}
   var lang='en',btn=document.getElementById('lang'),nav=document.getElementById('nav');
   var arLoaded=false;
   function loadAr(){if(arLoaded)return;arLoaded=true;var k=document.createElement('link');k.rel='stylesheet';k.href='https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500&display=swap';document.head.appendChild(k)}
@@ -13,7 +14,7 @@
     h.lang=l;h.dir=l==='ar'?'rtl':'ltr';
     document.querySelectorAll('[data-en]').forEach(function(e){var v=e.getAttribute('data-'+l);if(v!==null&&v.trim()!=='')e.textContent=v;});
     btn.textContent=l==='ar'?'English':'عربي';
-    [['.logo','NourEldin Home','نور الدين هوم'],['.flogo','NourEldin Home','نور الدين هوم'],['#nav','Main','القائمة الرئيسية'],['#close','Close menu','إغلاق القائمة'],['#lang','Switch language','تغيير اللغة'],['#burger','Menu','القائمة'],['.cover .photo','Living room by NourEldin Home','غرفة معيشة من نور الدين هوم'],['.arch .ph','Living room','غرفة معيشة'],['.soc a[aria-label=Instagram]','Instagram','إنستجرام'],['.soc a[aria-label=Facebook]','Facebook','فيسبوك'],['.soc a[aria-label=WhatsApp]','WhatsApp','واتساب'],['.soc a[aria-label=TikTok]','TikTok','تيك توك'],['.dclose','Close','إغلاق']].forEach(function(a){document.querySelectorAll(a[0]).forEach(function(e){e.setAttribute('aria-label',l==='ar'?a[2]:a[1])})});
+    [['.logo','NourEldin Home','نور الدين هوم'],['.flogo','NourEldin Home','نور الدين هوم'],['#nav','Main','القائمة الرئيسية'],['#close','Close menu','إغلاق القائمة'],['#lang','Switch language','تغيير اللغة'],['#burger','Menu','القائمة'],['.cover .photo','Living room by NourEldin Home','غرفة معيشة من نور الدين هوم'],['.arch .ph','Living room','غرفة معيشة'],['.soc a[aria-label=Instagram]','Instagram','إنستجرام'],['.soc a[aria-label=Facebook]','Facebook','فيسبوك'],['.soc a[aria-label=WhatsApp]','WhatsApp','واتساب'],['.soc a[aria-label=TikTok]','TikTok','تيك توك'],['.dclose','Close','إغلاق'],['#cue','Scroll down','مرر للأسفل']].forEach(function(a){document.querySelectorAll(a[0]).forEach(function(e){e.setAttribute('aria-label',l==='ar'?a[2]:a[1])})});
     document.querySelectorAll('.hero-n,.aimg').forEach(function(e){if(!e.dataset.alt)e.dataset.alt=e.alt;if(e.classList.contains('hero-n'))e.alt=l==='ar'?'نور الدين هوم':e.dataset.alt});
     var md=document.querySelector('meta[name=description]');if(md){if(!md.dataset.en)md.dataset.en=md.content;md.content=l==='ar'?'نور الدين هوم - بيوت متكاملة من الألف إلى الياء. أثاث وتصميم وتشطيب وتسليم.':md.dataset.en}
     document.title=l==='ar'?'نور الدين هوم':'NourEldin Home';
@@ -35,19 +36,32 @@
     var f=e.target,note=document.getElementById('note'),
     ok=lang==='ar'?'شكرًا لك. سنتواصل معك قريبًا.':'Thank you. We will contact you shortly.',
     bad=lang==='ar'?'تعذّر الإرسال. تواصل معنا عبر واتساب.':'Could not send. Please contact us on WhatsApp.';
-    if(!SHEET_URL){note.textContent=ok;f.reset();return;}
     var d={name:f.n.value,phone:f.p.value,type:f.t.value,message:f.m.value,lang:lang,page:location.href};
-    fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)})
-      .then(function(){note.textContent=ok;f.reset();})
-      .catch(function(){note.textContent=bad;});
+    if(!SHEET_URL&&!WA_NUM){note.textContent=ok;f.reset();return;}
+    var pending=null;
+    if(SHEET_URL){
+      pending=fetch(SHEET_URL,{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)});
+    }
+    if(WA_NUM){
+      var txt='NourEldin Home\n'+(lang==='ar'?'الاسم: ':'Name: ')+d.name+'\n'+(lang==='ar'?'الهاتف: ':'Phone: ')+d.phone+'\n'+(lang==='ar'?'نوع المشروع: ':'Project: ')+d.type+(d.message?'\n'+(lang==='ar'?'التفاصيل: ':'Details: ')+d.message:'');
+      var w=window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(txt),'_blank');
+      if(!w)location.href='https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(txt);
+    }
+    if(!pending){note.textContent=ok;f.reset();return;}
+    pending.then(function(){note.textContent=ok;f.reset();}).catch(function(){note.textContent=WA_NUM?ok:bad;});
   });
   var names=['cover','home','services','collections','projects','contact'],
       views=document.querySelectorAll('[data-view]'),block=document.getElementById('contactblock'),links=document.querySelectorAll('nav a');
+  function onScroll(){var b=document.body;if(!b.classList.contains('lp'))return;var c=document.querySelector('.cover'),lim=Math.max(120,(c?c.offsetHeight:600)-90);b.classList.toggle('at-top',window.scrollY<lim)}
+  window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);
+  var cue=document.getElementById('cue');if(cue)cue.addEventListener('click',function(){var c=document.querySelector('.cover');window.scrollTo({top:c?c.offsetHeight:window.innerHeight,behavior:'smooth'})});
   function route(){
     var h=location.hash.slice(1);if(names.indexOf(h)<0)h='cover';
-    views.forEach(function(v){v.hidden=v.getAttribute('data-view').split(' ').indexOf(h)<0});
-    block.hidden=(h==='cover');
-    document.body.className=h==='cover'?'is-cover':(h==='services'?'is-green':'');
+    var show=h==='cover'?['cover','home']:[h];
+    views.forEach(function(v){v.hidden=!v.getAttribute('data-view').split(' ').some(function(x){return show.indexOf(x)>-1})});
+    block.hidden=false;
+    document.body.className=h==='cover'?'lp at-top':((h==='services'||h==='projects')?'is-green':'');
+    onScroll();
     var tc=document.querySelector('meta[name=theme-color]');if(tc)tc.setAttribute('content',h==='cover'?'#0f1a17':(h==='services'?'#0f1a17':'#f6f1e7'));
     links.forEach(function(a){var tg=a.getAttribute('href');if(tg==='#'+h||(tg==='#cover'&&h==='home'))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
     setMenu(false);
@@ -55,7 +69,7 @@
   }
   /* ---- Products: search, filter, sort ---- */
   var PV=(window.SITE_CONFIG&&window.SITE_CONFIG.previewIds)||[],PRODUCTS=(window.PRODUCTS||[]).filter(function(p){return !PV.length||PV.indexOf(p.id)>-1}),BASE=PRODUCTS.slice(),addOn=!(window.SITE_CONFIG&&window.SITE_CONFIG.showAddButton===false),CATS=window.CATEGORIES||[],STY=window.STYLES||[],TYP=window.TYPES||[],
-  cat='all',sty='all',typ='all',sort='feat',qs='',shown=24,
+  cat='all',sty='all',typ='all',sort='feat',qs='',shown=99999,
   SORTS=[['feat','Featured','الترتيب الافتراضي'],['az','Name A–Z','الاسم أ–ي'],['za','Name Z–A','الاسم ي–أ'],['wa','Width: small to large','العرض: من الأصغر للأكبر'],['wd','Width: large to small','العرض: من الأكبر للأصغر']],
   T={all:{en:'All',ar:'الكل'},alltypes:{en:'All types',ar:'كل الأنواع'},ph:{en:'Search by name, size, material…',ar:'ابحث بالاسم أو المقاس أو الخامة…'},addp:{en:'Add a piece',ar:'إضافة قطعة'},bad:{en:'Please write a name and choose a category.',ar:'اكتب اسم القطعة واختر القسم.'},fail:{en:'Could not save on this device.',ar:'تعذّر الحفظ على هذا الجهاز.'},del:{en:'Delete this piece?',ar:'حذف هذه القطعة؟'},more:{en:'Show more',ar:'عرض المزيد'},msg:{en:'I am interested in: ',ar:'أنا مهتم بالقطع التالية: '}};
   function t(k){return T[k][lang]}
@@ -87,7 +101,7 @@
     return a.sort(by[sort]||by.feat).map(function(o){return o.p});
   }
   function chipRow(el,key,items,cur){
-    var s='';if(items.length>1){s='<button type="button" class="chip'+(cur==='all'?' on':'')+'" data-f="'+key+'" data-v="all">'+esc(t('all'))+'</button>';
+    var s='';if(items.length>1){if(key!=='style')s='<button type="button" class="chip'+(cur==='all'?' on':'')+'" data-f="'+key+'" data-v="all">'+esc(t('all'))+'</button>';
     items.forEach(function(k){s+='<button type="button" class="chip'+(cur===k.id?' on':'')+'" data-f="'+key+'" data-v="'+k.id+'">'+esc(k[lang])+'</button>'})}
     el.innerHTML=s;
   }
@@ -110,17 +124,17 @@
     $('noresult').hidden=n>0;$('fclear').hidden=!f;
     $('rcount').textContent=lang==='ar'?(f?n+' من '+all+' قطعة':all+' قطعة'):(f?n+' of '+all+' pieces':all+(all===1?' piece':' pieces'));
   }
-  function clearAll(){cat=sty=typ='all';qs='';$('q').value='';shown=24;renderShop()}
+  function clearAll(){cat=sty=typ='all';qs='';$('q').value='';shown=99999;renderShop()}
   window.renderAll=function(){renderShop()};
   document.addEventListener('click',function(e){
     var c=e.target.closest('.chip');
-    if(c){var k=c.getAttribute('data-f'),v=c.getAttribute('data-v');if(k==='cat')cat=v;else sty=v;shown=24;renderShop();return}
-    if(e.target.closest('#more')){shown+=24;renderGrid();return}
+    if(c){var k=c.getAttribute('data-f'),v=c.getAttribute('data-v');if(k==='cat')cat=v;else sty=(sty===v?'all':v);shown=99999;renderShop();return}
+    if(e.target.closest('#more')){shown+=99999;renderGrid();return}
     if(e.target.closest('#fclear,#noclear')){clearAll()}
   });
-  $('q').addEventListener('input',function(e){qs=e.target.value;shown=24;renderGrid()});
-  $('ftype').addEventListener('change',function(e){typ=e.target.value;shown=24;renderGrid()});
-  $('fsort').addEventListener('change',function(e){sort=e.target.value;shown=24;renderGrid()});
+  $('q').addEventListener('input',function(e){qs=e.target.value;shown=99999;renderGrid()});
+  $('ftype').addEventListener('change',function(e){typ=e.target.value;shown=99999;renderGrid()});
+  $('fsort').addEventListener('change',function(e){sort=e.target.value;shown=99999;renderGrid()});
   window.renderAll();
   /* ---- "+" add pieces: saved in this browser (IndexedDB) ---- */
   var DB=null,files=[],curImgs=[];
@@ -148,7 +162,7 @@
       e.preventDefault();var f=e.target,en=f.nen.value.trim(),ar=f.nar.value.trim(),de=f.den.value.trim(),da=f.dar.value.trim();
       if(!(en||ar)||!f.acat.value){$('anote').textContent=t('bad');return}
       var p={id:'u-'+Date.now(),at:Date.now(),local:true,cat:f.acat.value,en:en||ar,ar:ar||en,desc_en:de||da,desc_ar:da||de,imgs:files.slice(),img:files[0]||''};
-      dbDo('readwrite',function(s){return s.put(p)}).then(function(){cat=p.cat;sty=typ='all';qs='';$('q').value='';shown=24;$('addbox').close();loadAdded()}).catch(function(){$('anote').textContent=t('fail')});
+      dbDo('readwrite',function(s){return s.put(p)}).then(function(){cat=p.cat;sty=typ='all';qs='';$('q').value='';shown=99999;$('addbox').close();loadAdded()}).catch(function(){$('anote').textContent=t('fail')});
     });
     document.addEventListener('click',function(e){
       if(e.target.closest('#addbtn')){
