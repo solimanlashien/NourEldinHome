@@ -884,3 +884,21 @@ html[lang=ar] .about .acopy>.kicker{letter-spacing:0;text-transform:none;font-si
 #wood-modal .wood-modal-stage{position:relative;display:grid;place-items:center;width:100%;height:min(78vh,1000px);min-height:0;max-height:78vh;overflow:hidden}
 #wood-modal #wood-full{display:block;position:static;inset:auto;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center!important;transform:none!important}
 
+
+/* Wood cards use a direct full-size link beneath each uncropped image. */
+.wood-card{display:flex;flex-direction:column;align-items:stretch;padding:0;overflow:hidden;border:1px solid var(--line);background:var(--bg2);color:var(--ink);text-align:center;box-shadow:0 8px 24px rgba(19,32,28,.07)}
+.wood-card img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;background:#f5f2eb}
+.wood-card-number{display:block;padding:12px 14px 5px;font:500 1.2rem/1.2 var(--serif);letter-spacing:.08em;color:var(--champ)}
+.wood-full-link{display:block;margin:8px 14px 14px;padding:10px 14px;border:1px solid var(--champ);color:var(--champ);text-decoration:none;font-size:.92rem;transition:background .2s,color .2s}
+.wood-full-link:hover,.wood-full-link:focus-visible{background:var(--champ);color:var(--bg)}
+html[lang=ar] .wood-card-number,html[lang=ar] .wood-full-link{letter-spacing:0}
+
+
+.wood-card{cursor:default;transition:none}.wood-card:hover img{transform:none}
+
+
+/* Keep the main navigation fixed and visible while any page scrolls. */
+header{position:fixed!important;top:env(safe-area-inset-top,0px);left:0;right:0;width:100%}
+body:not(.lp) main{padding-top:calc(76px + env(safe-area-inset-top,0px))}
+body.lp main{padding-top:0}
+

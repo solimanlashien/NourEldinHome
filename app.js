@@ -14,7 +14,7 @@
     h.lang=l;h.dir=l==='ar'?'rtl':'ltr';
     document.querySelectorAll('[data-en]').forEach(function(e){var v=e.getAttribute('data-'+l);if(v!==null&&v.trim()!=='')e.textContent=v;});
     btn.textContent=l==='ar'?'English':'عربي';
-    [['.logo','NourEldin Home','نور الدين هوم'],['.flogo','NourEldin Home','نور الدين هوم'],['#nav','Main','القائمة الرئيسية'],['#close','Close menu','إغلاق القائمة'],['#lang','Switch language','تغيير اللغة'],['#burger','Menu','القائمة'],['.cover .photo','Living room by NourEldin Home','غرفة معيشة من نور الدين هوم'],['.arch .ph','Living room','غرفة معيشة'],['.soc a[aria-label=Instagram]','Instagram','إنستجرام'],['.soc a[aria-label=Facebook]','Facebook','فيسبوك'],['.soc a[aria-label=WhatsApp]','WhatsApp','واتساب'],['.wafloat','WhatsApp','واتساب'],['.soc a[aria-label=TikTok]','TikTok','تيك توك'],['.dclose','Close','إغلاق'],['#wood-modal-close','Close photo','إغلاق الصورة'],['#wood-prev','Previous photo','الصورة السابقة'],['#wood-next','Next photo','الصورة التالية'],['#cue','Scroll down','مرر للأسفل']].forEach(function(a){document.querySelectorAll(a[0]).forEach(function(e){e.setAttribute('aria-label',l==='ar'?a[2]:a[1])})});
+    [['.logo','NourEldin Home','نور الدين هوم'],['.flogo','NourEldin Home','نور الدين هوم'],['#nav','Main','القائمة الرئيسية'],['#close','Close menu','إغلاق القائمة'],['#lang','Switch language','تغيير اللغة'],['#burger','Menu','القائمة'],['.cover .photo','Living room by NourEldin Home','غرفة معيشة من نور الدين هوم'],['.arch .ph','Living room','غرفة معيشة'],['.soc a[aria-label=Instagram]','Instagram','إنستجرام'],['.soc a[aria-label=Facebook]','Facebook','فيسبوك'],['.soc a[aria-label=WhatsApp]','WhatsApp','واتساب'],['.wafloat','WhatsApp','واتساب'],['.soc a[aria-label=TikTok]','TikTok','تيك توك'],['.dclose','Close','إغلاق'],['#cue','Scroll down','مرر للأسفل']].forEach(function(a){document.querySelectorAll(a[0]).forEach(function(e){e.setAttribute('aria-label',l==='ar'?a[2]:a[1])})});
     document.querySelectorAll('.hero-n,.aimg').forEach(function(e){if(!e.dataset.alt)e.dataset.alt=e.alt;if(e.classList.contains('hero-n'))e.alt=l==='ar'?'نور الدين هوم':e.dataset.alt});
     var md=document.querySelector('meta[name=description]');if(md){if(!md.dataset.en)md.dataset.en=md.content;md.content=l==='ar'?'نور الدين هوم - بيوت متكاملة من الألف إلى الياء. أثاث وتصميم وتشطيب وتسليم.':md.dataset.en}
     document.title=l==='ar'?'نور الدين هوم':'NourEldin Home';
@@ -125,33 +125,20 @@
     $('rcount').textContent=lang==='ar'?(f?n+' من '+all+' قطعة':all+' قطعة'):(f?n+' of '+all+' pieces':all+(all===1?' piece':' pieces'));
   }
   function clearAll(){cat=sty=typ='all';qs='';$('q').value='';shown=99999;renderShop()}
-  var woodIndex=0,woodDialog=$('wood-modal');
   function woodNumber(i){var n=String(i+1).padStart(2,'0');return lang==='ar'?'رقم '+n:'No. '+n}
-  function openWood(i){
-    woodIndex=(i+44)%44;var n=String(woodIndex+1).padStart(2,'0');
-    $('wood-full').src='images/wood-carpentry/full/wood-'+n+'.webp';$('wood-original').href=$('wood-full').src;
-    $('wood-full').alt=lang==='ar'?'صورة نجارة خشبية رقم '+n:'Wood carpentry photo '+n;
-    $('wood-count').textContent=n+' / 44';
-    $('wood-modal-title').textContent=(lang==='ar'?'النجارة الخشبية — ':'Wood Carpentry — ')+woodNumber(woodIndex);
-    if(!woodDialog.open)woodDialog.showModal();
-  }
   function renderWood(){
     var g=$('wood-grid');if(!g)return;
     var cards='';
     for(var i=1;i<=44;i++){
-      var n=String(i).padStart(2,'0'),label=woodNumber(i-1),aria=lang==='ar'?'عرض صورة النجارة '+n:'View woodwork photo '+n;
-      cards+='<button type="button" class="wood-card" data-wood-index="'+(i-1)+'" aria-label="'+aria+'"><img src="images/wood-carpentry/wood-'+n+'.webp" alt="" loading="lazy" decoding="async"><span class="wood-card-number">'+label+'</span></button>';
+      var n=String(i).padStart(2,'0'),label=woodNumber(i-1),full='images/wood-carpentry/full/wood-'+n+'.webp';
+      var action=lang==='ar'?'عرض الصورة كاملة':'Full-size image';
+      cards+='<article class="wood-card"><img src="images/wood-carpentry/wood-'+n+'.webp" alt="'+(lang==='ar'?'نجارة خشبية رقم '+n:'Wood carpentry '+n)+'" loading="lazy" decoding="async"><span class="wood-card-number">'+label+'</span><a class="wood-full-link" href="'+full+'" target="_blank" rel="noopener">'+action+'</a></article>';
     }
     g.innerHTML=cards;
   }
   window.renderAll=function(){renderShop();renderWood()};
   document.addEventListener('click',function(e){
-    var woodCard=e.target.closest('[data-wood-index]');
-    if(woodCard){openWood(+woodCard.getAttribute('data-wood-index'));return}
-    if(e.target.closest('#wood-prev')){openWood(woodIndex-1);return}
-    if(e.target.closest('#wood-next')){openWood(woodIndex+1);return}
-    if(e.target.closest('#wood-modal-close')){woodDialog.close();return}
-    if(e.target===woodDialog){woodDialog.close();return}
+    
     var c=e.target.closest('.chip');
     if(c){var k=c.getAttribute('data-f'),v=c.getAttribute('data-v');if(k==='cat')cat=v;else sty=(sty===v?'all':v);shown=99999;renderShop();return}
     if(e.target.closest('#more')){shown+=99999;renderGrid();return}
@@ -160,7 +147,6 @@
   $('q').addEventListener('input',function(e){qs=e.target.value;shown=99999;renderGrid()});
   $('ftype').addEventListener('change',function(e){typ=e.target.value;shown=99999;renderGrid()});
   $('fsort').addEventListener('change',function(e){sort=e.target.value;shown=99999;renderGrid()});
-  document.addEventListener('keydown',function(e){if(!woodDialog.open)return;if(e.key==='ArrowRight')openWood(woodIndex+(document.documentElement.dir==='rtl'?-1:1));if(e.key==='ArrowLeft')openWood(woodIndex+(document.documentElement.dir==='rtl'?1:-1))});
   window.renderAll();
   /* ---- "+" add pieces: saved in this browser (IndexedDB) ---- */
   var DB=null,files=[],curImgs=[];
