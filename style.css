@@ -878,3 +878,9 @@ html[lang=ar] .about .acopy>.kicker{letter-spacing:0;text-transform:none;font-si
 
 .wood-modal-original{text-align:center;margin:8px 0 0;font-size:.92rem}.wood-modal-original a{color:var(--champ);text-decoration:underline}
 
+
+/* Desktop Wood viewer: bounded stage plus explicit contain prevents wide-screen clipping. */
+#wood-modal{box-sizing:border-box;width:min(1500px,96vw)!important;max-width:96vw;max-height:96vh!important;padding:48px 14px 14px!important;overflow:auto!important}
+#wood-modal .wood-modal-stage{position:relative;display:grid;place-items:center;width:100%;height:min(78vh,1000px);min-height:0;max-height:78vh;overflow:hidden}
+#wood-modal #wood-full{display:block;position:static;inset:auto;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center!important;transform:none!important}
+

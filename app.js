@@ -129,7 +129,7 @@
   function woodNumber(i){var n=String(i+1).padStart(2,'0');return lang==='ar'?'رقم '+n:'No. '+n}
   function openWood(i){
     woodIndex=(i+44)%44;var n=String(woodIndex+1).padStart(2,'0');
-    $('wood-full').src='images/wood-carpentry/full/wood-'+n+'.webp';
+    $('wood-full').src='images/wood-carpentry/full/wood-'+n+'.webp';$('wood-original').href=$('wood-full').src;
     $('wood-full').alt=lang==='ar'?'صورة نجارة خشبية رقم '+n:'Wood carpentry photo '+n;
     $('wood-count').textContent=n+' / 44';
     $('wood-modal-title').textContent=(lang==='ar'?'النجارة الخشبية — ':'Wood Carpentry — ')+woodNumber(woodIndex);
