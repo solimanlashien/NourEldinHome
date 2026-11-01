@@ -130,7 +130,7 @@
     var cards='';
     for(var i=1;i<=44;i++){
       var n=String(i).padStart(2,'0'),label=lang==='ar'?'نجارة خشبية '+n:'Wood Carpentry '+n;
-      cards+='<article class="wood-card"><img src="images/wood-carpentry/wood-'+n+'.jpeg" alt="'+label+'" loading="lazy" decoding="async"><h3>'+label+'</h3></article>';
+      cards+='<article class="wood-card"><img src="images/wood-carpentry/wood-'+n+'.webp" alt="'+label+'" loading="lazy" decoding="async"><h3>'+label+'</h3></article>';
     }
     g.innerHTML=cards;
   }

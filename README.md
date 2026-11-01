@@ -14,9 +14,9 @@ images/ photo, logo, product, project, and video files
 Keep the script order in `index.html` (config, products, app): `app.js` reads the other two. See IMAGE_UPLOAD_PARTS.md for the ZIP extraction and upload instructions.
 
 ## Common edits
-- **Add a product:** copy a line in the `window.PRODUCTS` list in `products.js`, give it a new unique `id`, and set `cat` (room), `style` (`classic` / `modern`), `kind` (`set` / `corner` / `custom`), names (`en`/`ar`), `desc_en` / `desc_ar` (new lines are kept), `img` (use the matching `images-part-XX/products/...` path) and `w` (main sofa width in cm, used by *Sort by width*). Styles and types are listed at the top of `products.js`; room chips and filters appear automatically for the values that are in use.
+- **Add a product:** copy a line in the `window.PRODUCTS` list in `products.js`, give it a new unique `id`, and set `cat` (room), `style` (`classic` / `modern`), `kind` (`set` / `corner` / `custom`), names (`en`/`ar`), `desc_en` / `desc_ar` (new lines are kept), `img` (use the matching `images/products/...` path) and `w` (main sofa width in cm, used by *Sort by width*). Styles and types are listed at the top of `products.js`; room chips and filters appear automatically for the values that are in use.
 - **Text:** find the element in `index.html`. Each text has `data-en` (English) and `data-ar` (Arabic). Change both, and the visible text inside the tag.
-- **Photo / logo:** replace the files in the numbered `images-part-XX` folders, keeping the same paths (or change the names in `style.css`).
+- **Photo / logo:** replace files in `images/`, keeping the same paths (or change the names in `style.css`).
 - **Social links, phone, address:** the footer and the `#contactblock` section in `index.html`.
 - **Add a page:** add a `<section data-view="mypage">`, add `'mypage'` to the `names` list in `app.js`, and link to `#mypage`.
 - **Contact form to Google Sheets:** paste the Apps Script URL into `sheetUrl` in `config.js`.
