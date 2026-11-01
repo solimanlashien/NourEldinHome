@@ -869,3 +869,12 @@ html[lang=ar] .egypt .esig p{text-align:right}
 .about .acopy>.kicker{display:flex;align-items:center;gap:14px;margin:0 0 18px;font:500 .85rem var(--sans);letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
 .about .acopy>.kicker::before{content:"";width:42px;height:1px;background:var(--gold)}
 html[lang=ar] .about .acopy>.kicker{letter-spacing:0;text-transform:none;font-size:1.05rem;font-weight:700}
+
+/* Wood viewer: size each photo by its own aspect ratio so the entire image stays visible. */
+#wood-modal{width:fit-content;max-width:96vw;overflow:visible}
+#wood-modal .wood-modal-stage{display:grid;place-items:center;width:auto;height:auto;min-height:0;max-height:78vh;overflow:visible}
+#wood-modal #wood-full{position:static;width:auto!important;height:auto!important;max-width:calc(96vw - 48px)!important;max-height:76vh!important;object-fit:scale-down!important}
+@media(max-width:760px){#wood-modal #wood-full{max-width:calc(96vw - 36px)!important;max-height:72vh!important}}
+
+.wood-modal-original{text-align:center;margin:8px 0 0;font-size:.92rem}.wood-modal-original a{color:var(--champ);text-decoration:underline}
+
