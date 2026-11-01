@@ -492,7 +492,7 @@ footer{padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
 .wood-card{display:block;width:100%;min-width:0;padding:0;overflow:hidden;border:1px solid var(--line);background:var(--bg2);color:var(--ink);text-align:center;cursor:pointer;box-shadow:0 8px 24px rgba(19,32,28,.07);transition:border-color .25s,transform .25s}
 .wood-card:hover{border-color:var(--champ);transform:translateY(-2px)}
 .wood-card:focus-visible{outline:2px solid var(--champ);outline-offset:3px}
-.wood-card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#e9e2d5;transition:transform .5s}
+.wood-card img{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;background:#f5f2eb;transition:transform .5s}
 .wood-card:hover img{transform:scale(1.025)}
 .wood-card-number{display:block;padding:12px 14px 14px;border-top:1px solid var(--line);font:500 1.2rem/1.2 var(--serif);letter-spacing:.08em;color:var(--champ)}
 html[lang=ar] .wood-card-number{font-family:var(--serif);font-weight:700;letter-spacing:0}
