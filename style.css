@@ -484,6 +484,16 @@ footer{padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
 .pgtop[data-view="collections"] .head p.lead{font-size:clamp(1.35rem,2.5vw,1.8rem);font-weight:600;line-height:1.3;color:var(--champ)}
 .pgbody{padding-top:30px}
 @media (max-width:760px){.pgtop{padding-bottom:20px}.pgbody{padding-top:20px}}
+.pgtop[data-view="collections"] .wrap{display:flex;align-items:center;justify-content:space-between;gap:28px}
+.woodtop .head h2{color:var(--champ)}
+.woodtop .head p{color:var(--mute);margin-top:10px}
+.woodbody{padding-top:20px}
+.wood-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px}
+.wood-card{min-width:0;padding:8px;background:var(--bg2);border:1px solid var(--line);box-shadow:0 8px 24px rgba(19,32,28,.07)}
+.wood-card img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:#e9e2d5}
+.wood-card h3{margin:9px 3px 4px;font:500 .9rem/1.3 var(--sans);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:980px){.wood-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:760px){.pgtop[data-view="collections"] .wrap{align-items:flex-start;flex-direction:column;gap:16px}.wood-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.wood-card{padding:6px}.wood-card h3{font-size:.82rem;margin:7px 2px 3px}}
 
 /* ---- Services page: mostly green (mixed forest green), with two ivory bands ----
    Change --pg-green to adjust the green. Top bar uses the same green. */

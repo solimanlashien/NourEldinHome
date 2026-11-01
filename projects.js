@@ -1,7 +1,7 @@
 /* Projects page: one editorial panel per residence; tap to open its photo + video gallery.
-   Media lives in images/projects/pN/ (01.webp, t01.webp ..., c.webp cover, v1.mp4, v1.jpg). */
+   Project media is stored under images/projects/. */
 (function(){
-  var SHOW_HIDDEN=false;
+  var SHOW_HIDDEN=true;
   var ALL=[
     {n:1,imgs:6,vids:0,en:"Doha",ar:"الدوحة",cEn:"",cAr:""},
     {n:2,imgs:27,vids:0,en:"Mivida",ar:"ميفيدا",cEn:"New Cairo",cAr:"القاهرة الجديدة"},

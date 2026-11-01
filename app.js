@@ -50,7 +50,7 @@
     if(!pending){note.textContent=ok;f.reset();return;}
     pending.then(function(){note.textContent=ok;f.reset();}).catch(function(){note.textContent=WA_NUM?ok:bad;});
   });
-  var names=['cover','home','services','collections','projects','contact'],
+  var names=['cover','home','services','collections','wood-carpentry','projects','contact'],
       views=document.querySelectorAll('[data-view]'),block=document.getElementById('contactblock'),links=document.querySelectorAll('nav a');
   function onScroll(){var b=document.body;if(!b.classList.contains('lp'))return;var c=document.querySelector('.cover'),lim=Math.max(120,(c?c.offsetHeight:600)-90);b.classList.toggle('at-top',window.scrollY<lim)}
   window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);
@@ -125,7 +125,16 @@
     $('rcount').textContent=lang==='ar'?(f?n+' من '+all+' قطعة':all+' قطعة'):(f?n+' of '+all+' pieces':all+(all===1?' piece':' pieces'));
   }
   function clearAll(){cat=sty=typ='all';qs='';$('q').value='';shown=99999;renderShop()}
-  window.renderAll=function(){renderShop()};
+  function renderWood(){
+    var g=$('wood-grid');if(!g)return;
+    var cards='';
+    for(var i=1;i<=44;i++){
+      var n=String(i).padStart(2,'0'),label=lang==='ar'?'نجارة خشبية '+n:'Wood Carpentry '+n;
+      cards+='<article class="wood-card"><img src="images/wood-carpentry/wood-'+n+'.jpeg" alt="'+label+'" loading="lazy" decoding="async"><h3>'+label+'</h3></article>';
+    }
+    g.innerHTML=cards;
+  }
+  window.renderAll=function(){renderShop();renderWood()};
   document.addEventListener('click',function(e){
     var c=e.target.closest('.chip');
     if(c){var k=c.getAttribute('data-f'),v=c.getAttribute('data-v');if(k==='cat')cat=v;else sty=(sty===v?'all':v);shown=99999;renderShop();return}
