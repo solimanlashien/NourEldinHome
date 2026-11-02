@@ -129,7 +129,7 @@
   function renderWood(){
     var g=$('wood-grid');if(!g)return;
     var cards='';
-    for(var i=1;i<=44;i++){
+    for(var i=1;i<=63;i++){
       var n=String(i).padStart(2,'0'),label=woodNumber(i-1),full='images/wood-carpentry/full/wood-'+n+'.webp';
       var action=lang==='ar'?'عرض الصورة كاملة':'Full-size image';
       cards+='<article class="wood-card"><img src="images/wood-carpentry/wood-'+n+'.webp" alt="'+(lang==='ar'?'نجارة خشبية رقم '+n:'Wood carpentry '+n)+'" loading="lazy" decoding="async"><span class="wood-card-number">'+label+'</span><a class="wood-full-link" href="'+full+'" target="_blank" rel="noopener">'+action+'</a></article>';
