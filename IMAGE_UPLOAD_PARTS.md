@@ -1,10 +1,10 @@
-# Optimized site upload ZIP parts
+# Complete optimized site deployment
 
-The Wood Carpentry page now uses compact WebP cards with elegant numbered labels. Selecting a card opens its full photo in a viewer. The full-size viewer photos are included in these upload parts.
+This is the latest complete website folder. If using the upload ZIP parts, extract every part into the same site folder; paths are preserved. GitHub Pages does not unpack ZIP files automatically. Each ZIP contains no more than 100 files.
 
-Extract all eight ZIP files into the same site folder. They preserve the site paths, including the shared `images/` folder. Each ZIP has no more than 100 files. Part 01 includes the site root files.
+The Projects page has count-free introductory text, so you can add projects over time. The Wood Carpentry page has uncropped photos with a direct full-size image link beneath each card.
 
-File counts:
+Upload part counts:
 - NourEldin_part01.zip — 100 files
 - NourEldin_part02.zip — 100 files
 - NourEldin_part03.zip — 100 files
@@ -12,6 +12,6 @@ File counts:
 - NourEldin_part05.zip — 100 files
 - NourEldin_part06.zip — 100 files
 - NourEldin_part07.zip — 100 files
-- NourEldin_part08.zip — 75 files
-
-Upload the extracted files to GitHub; GitHub Pages does not unpack ZIP files automatically. The complete optimized site folder is also available for preview.
+- NourEldin_part08.zip — 100 files
+- NourEldin_part09.zip — 100 files
+- NourEldin_part10.zip — 84 files

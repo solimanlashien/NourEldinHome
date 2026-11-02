@@ -4,6 +4,11 @@
   var SHOW_HIDDEN=true;
   var ALL=[
     {n:1,imgs:6,vids:0,en:"Doha",ar:"الدوحة",cEn:"",cAr:""},
+    {n:11,imgs:12,vids:0,en:"Hyde Park",ar:"هايد بارك",cEn:"New Cairo",cAr:"القاهرة الجديدة"},
+    {n:12,imgs:5,vids:1,en:"Katameya Heights",ar:"قطامية هايتس",cEn:"New Cairo",cAr:"القاهرة الجديدة"},
+    {n:13,imgs:28,vids:2,en:"ZED West",ar:"زد ويست",cEn:"Giza",cAr:"الجيزة"},
+    {n:14,imgs:14,vids:0,en:"O West",ar:"أو ويست",cEn:"Giza",cAr:"الجيزة"},
+    {n:15,imgs:21,vids:0,en:"Uptown Cairo",ar:"أب تاون كايرو",cEn:"Mokattam",cAr:"المقطم"},
     {n:2,imgs:27,vids:0,en:"Mivida",ar:"ميفيدا",cEn:"New Cairo",cAr:"القاهرة الجديدة"},
     {n:3,imgs:27,vids:0,en:"Mountain View",ar:"ماونتن فيو",cEn:"New Cairo",cAr:"القاهرة الجديدة"},
     {n:4,imgs:13,vids:0,en:"Madinaty",ar:"مدينتي",cEn:"New Cairo",cAr:"القاهرة الجديدة"},
@@ -14,8 +19,7 @@
     {n:8,hide:1,imgs:8,vids:2,en:"Ora",ar:"أورا",cEn:"Giza",cAr:"الجيزة"},
     {n:10,hide:1,imgs:10,vids:2,en:"Katameya Residence",ar:"القطامية ريزيدنس",cEn:"New Cairo",cAr:"القاهرة الجديدة"}
   ];
-  /* Projects 7-10 (New Giza, Palm Hills, Ora, Katameya) are hidden for now.
-     To show them all again: set SHOW_HIDDEN to true (or delete hide:1 from a single line to show just that one). */
+  /* New projects are listed after the retained first project; existing projects follow. */
   var P=ALL.filter(function(x){return SHOW_HIDDEN||!x.hide});
   window.PROJECTS=P;
   var $=function(i){return document.getElementById(i)},grid=$('pgrid'),dlg=$('pgal'),nav=$('pnav');
