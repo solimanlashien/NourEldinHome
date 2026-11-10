@@ -236,58 +236,15 @@
     viewport.addEventListener('click',function(e){
       if(dragMoved>DRAG_START){e.stopPropagation();e.preventDefault();dragMoved=0;downCard=null;}
     },true);
-    /* Smooth wheel & trackpad glide on desktop/TV browsers, releasing vertical scroll at ends */
-    viewport.addEventListener('wheel',function(e){
-      calcMax();
-      if(maxScroll<=0)return;
-      var delta=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;
-      if(Math.abs(delta)<2)return;
-      var sign=ar()?-1:1;
-      var nextVal=targetX+sign*delta*1.15;
-      var atStart=targetX<=2&&(sign*delta)<0;
-      var atEnd=targetX>=maxScroll-2&&(sign*delta)>0;
-      if(atStart||atEnd)return; /* release vertical scroll to reach header/footer */
-      e.preventDefault();
-      setTarget(nextVal,false);
-    },{passive:false});
   }
 
-  /* Center a card in the slider when focused via keyboard or Smart TV remote D-pad */
-  grid.addEventListener('focusin',function(e){
-    var card=e.target&&e.target.closest?e.target.closest('.lm-card'):null;
-    if(!card||!viewport)return;
-    calcMax();
-    var viewW=viewport.clientWidth||window.innerWidth||1;
-    var cardCenter=card.offsetLeft+(card.offsetWidth/2);
-    if(ar()){
-      var trackW=grid.scrollWidth||grid.offsetWidth||viewW;
-      cardCenter=(trackW-(card.offsetLeft+card.offsetWidth))+(card.offsetWidth/2);
-    }
-    setTarget(cardCenter-(viewW/2),false);
-  });
-
-  /* Keyboard & TV Remote Left/Right/Escape support on Projects page & Detail view */
+  /* Keyboard Left/Right support when on Projects page */
   window.addEventListener('keydown',function(e){
-    if(dlg&&dlg.open)return;
-    if(secDetail&&!secDetail.hidden){
-      if(e.key==='Escape'){
-        e.preventDefault();
-        closeProjectDetail();
-      }
-      return;
-    }
-    if(!secProjects||secProjects.hidden)return;
-    var activeCard=document.activeElement&&document.activeElement.closest?document.activeElement.closest('.lm-card'):null;
-    if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
-      var stepDir=(e.key==='ArrowRight'?1:-1)*(ar()?-1:1);
-      if(activeCard){
-        var curIdx=+activeCard.getAttribute('data-i');
-        var nextIdx=Math.min(P.length-1,Math.max(0,curIdx+stepDir));
-        var nextBtnEl=grid.querySelector('.lm-card-btn[data-i="'+nextIdx+'"]');
-        if(nextBtnEl){e.preventDefault();nextBtnEl.focus();}
-      } else {
-        setTarget(targetX+stepDir*420,false);
-      }
+    if(!secProjects||secProjects.hidden||dlg.open)return;
+    if(e.key==='ArrowRight'){
+      setTarget(targetX+(ar()?-420:420),false);
+    } else if(e.key==='ArrowLeft'){
+      setTarget(targetX+(ar()?420:-420),false);
     }
   });
 
