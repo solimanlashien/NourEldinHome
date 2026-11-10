@@ -4,7 +4,71 @@
    3. Side menu, contact form. */
 (function(){
   var SHEET_URL=(window.SITE_CONFIG&&window.SITE_CONFIG.sheetUrl)||'',WA_NUM=String((window.SITE_CONFIG&&window.SITE_CONFIG.whatsappNumber)||'').replace(/\D/g,'');
+  function trackPageView(page){
+    if(!SHEET_URL)return;
+    function storedId(storage,key){
+      try{
+        var id=storage.getItem(key);
+        if(!id){id=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():'v-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);storage.setItem(key,id)}
+        return id;
+      }catch(e){return 'temporary-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2)}
+    }
+    var visitorId,sessionId;
+    try{visitorId=storedId(window.localStorage,'nourEldinAnalyticsVisitorV1')}catch(e){visitorId='temporary-'+Date.now().toString(36)}
+    try{sessionId=storedId(window.sessionStorage,'nourEldinAnalyticsSessionV1')}catch(e){sessionId='temporary-'+Date.now().toString(36)}
+    var event={type:'Site analytics',event:'Page view',visitorId:visitorId,sessionId:sessionId,page:page,lang:document.documentElement.lang||'en'};
+    fetch(SHEET_URL,{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(event)}).catch(function(){});
+  }
   if(WA_NUM){document.querySelectorAll('.soc a[aria-label=WhatsApp],.wafloat').forEach(function(x){x.href='https://wa.me/'+WA_NUM})}
+  var welcome=document.getElementById('welcome-gate'),welcomeForm=document.getElementById('welcome-form');
+  if(welcome&&welcomeForm){
+    var welcomeKey='nourEldinWelcomeVisitorV1',welcomeCompleted=false;
+    try{
+      var savedVisitor=JSON.parse(localStorage.getItem(welcomeKey)||'null');
+      welcomeCompleted=!!(savedVisitor&&savedVisitor.submitted===true);
+      /* Keep visitors who already submitted in this open tab from seeing the form again. */
+      if(!welcomeCompleted&&sessionStorage.getItem('nourEldinWelcomeSubmittedSessionV1')==='1'){
+        welcomeCompleted=true;
+        localStorage.setItem(welcomeKey,JSON.stringify({submitted:true}));
+      }
+    }catch(e){}
+    if(welcomeCompleted){welcome.hidden=true}
+    else{welcome.hidden=false;Array.prototype.forEach.call(document.body.children,function(el){if(el!==welcome)el.inert=true})}
+    var welcomeName=welcomeForm.elements.namedItem('name'),welcomePhone=welcomeForm.elements.namedItem('phone'),welcomePhoneError=document.getElementById('welcome-phone-error');
+    welcomeName.addEventListener('input',function(){welcomeName.setCustomValidity('')});
+    welcomePhone.addEventListener('input',function(){
+      var digits=welcomePhone.value.replace(/\D/g,'').slice(0,11);
+      if(welcomePhone.value!==digits)welcomePhone.value=digits;
+      var valid=digits.length===11&&digits.indexOf('01')===0;
+      welcomePhone.setCustomValidity(digits&&!valid?(document.documentElement.lang==='ar'?'يجب إدخال 11 رقمًا يبدأ بـ 01.':'You should enter 11 digits starting with 01.'): '');
+      welcomePhone.setAttribute('aria-invalid',digits&&!valid?'true':'false');
+      if(welcomePhoneError){welcomePhoneError.hidden=true;welcomePhoneError.textContent=document.documentElement.lang==='ar'?'يجب إدخال 11 رقمًا يبدأ بـ 01.':'You should enter 11 digits starting with 01.';}
+    });
+    welcomePhone.addEventListener('invalid',function(){
+      var message=document.documentElement.lang==='ar'?'يجب إدخال 11 رقمًا يبدأ بـ 01.':'You should enter 11 digits starting with 01.';
+      welcomePhone.setCustomValidity(message);
+      welcomePhone.setAttribute('aria-invalid','true');
+      if(welcomePhoneError){welcomePhoneError.textContent=message;welcomePhoneError.hidden=false;}
+    });
+    welcomeForm.addEventListener('submit',function(e){
+      e.preventDefault();
+      var name=welcomeName.value.trim(),phone=welcomePhone.value.trim();
+      if(!name){welcomeName.setCustomValidity(lang==='ar'?'يرجى كتابة الاسم.':'Please enter your name.');welcomeName.reportValidity();return;}
+      if(!phone){welcomePhone.setCustomValidity(lang==='ar'?'يرجى كتابة رقم الهاتف.':'Please enter your phone number.');welcomePhone.reportValidity();return;}
+      if(!/^01\d{9}$/.test(phone)){if(welcomePhoneError)welcomePhoneError.hidden=false;welcomePhone.setCustomValidity(lang==='ar'?'يجب إدخال 11 رقمًا يبدأ بـ 01.':'You should enter 11 digits starting with 01.');welcomePhone.reportValidity();return;}
+      if(SHEET_URL){
+        var d={name:name,phone:phone,type:'Website welcome',message:'',lang:document.documentElement.lang||'en',page:location.href};
+        fetch(SHEET_URL,{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)}).catch(function(){});
+      }
+      try{localStorage.setItem(welcomeKey,JSON.stringify({submitted:true,name:name,phone:phone}))}catch(e){}
+      try{sessionStorage.setItem('nourEldinWelcomeSubmittedSessionV1','1')}catch(e){}
+      welcome.hidden=true;
+      Array.prototype.forEach.call(document.body.children,function(el){el.inert=false});
+      document.querySelectorAll('.cover-video,.cover-video-bg').forEach(function(v){v.currentTime=0;v.play().catch(function(){})});
+      if(location.hash!=='#cover')location.hash='#cover';
+      else window.scrollTo(0,0);
+    });
+  }
   var lang='en',btn=document.getElementById('lang'),nav=document.getElementById('nav');
   var arLoaded=false;
   function loadAr(){if(arLoaded)return;arLoaded=true;var k=document.createElement('link');k.rel='stylesheet';k.href='https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500&display=swap';document.head.appendChild(k)}
@@ -14,7 +78,7 @@
     h.lang=l;h.dir=l==='ar'?'rtl':'ltr';
     document.querySelectorAll('[data-en]').forEach(function(e){var v=e.getAttribute('data-'+l);if(v!==null&&v.trim()!=='')e.textContent=v;});
     btn.textContent=l==='ar'?'English':'عربي';
-    [['.logo','NourEldin Home','نور الدين هوم'],['.flogo','NourEldin Home','نور الدين هوم'],['#nav','Main','القائمة الرئيسية'],['#close','Close menu','إغلاق القائمة'],['#lang','Switch language','تغيير اللغة'],['#burger','Menu','القائمة'],['.cover .photo','Living room by NourEldin Home','غرفة معيشة من نور الدين هوم'],['.arch .ph','Living room','غرفة معيشة'],['.soc a[aria-label=Instagram]','Instagram','إنستجرام'],['.soc a[aria-label=Facebook]','Facebook','فيسبوك'],['.soc a[aria-label=WhatsApp]','WhatsApp','واتساب'],['.wafloat','WhatsApp','واتساب'],['.soc a[aria-label=TikTok]','TikTok','تيك توك'],['.dclose','Close','إغلاق'],['#cue','Scroll down','مرر للأسفل']].forEach(function(a){document.querySelectorAll(a[0]).forEach(function(e){e.setAttribute('aria-label',l==='ar'?a[2]:a[1])})});
+    [['.logo','NourEldin Home','نور الدين هوم'],['.flogo','NourEldin Home','نور الدين هوم'],['#nav','Main','القائمة الرئيسية'],['#close','Close menu','إغلاق القائمة'],['#lang','Switch language','تغيير اللغة'],['#burger','Menu','القائمة'],['.cover .photo','Interior planning sketch and woodworking workshop','تصميم داخلي وورشة للأعمال الخشبية'],['.arch .ph','Living room','غرفة معيشة'],['.soc a[aria-label=Instagram]','Instagram','إنستجرام'],['.soc a[aria-label=Facebook]','Facebook','فيسبوك'],['.soc a[aria-label=WhatsApp]','WhatsApp','واتساب'],['.wafloat','WhatsApp','واتساب'],['.soc a[aria-label=TikTok]','TikTok','تيك توك'],['.dclose','Close','إغلاق'],['#cue','Scroll down','مرر للأسفل']].forEach(function(a){document.querySelectorAll(a[0]).forEach(function(e){e.setAttribute('aria-label',l==='ar'?a[2]:a[1])})});
     document.querySelectorAll('.hero-n,.aimg').forEach(function(e){if(!e.dataset.alt)e.dataset.alt=e.alt;if(e.classList.contains('hero-n'))e.alt=l==='ar'?'نور الدين هوم':e.dataset.alt});
     var md=document.querySelector('meta[name=description]');if(md){if(!md.dataset.en)md.dataset.en=md.content;md.content=l==='ar'?'نور الدين هوم - بيوت متكاملة من الألف إلى الياء. أثاث وتصميم وتشطيب وتسليم.':md.dataset.en}
     document.title=l==='ar'?'نور الدين هوم':'NourEldin Home';
@@ -44,28 +108,40 @@
     }
     if(WA_NUM){
       var txt='NourEldin Home\n'+(lang==='ar'?'الاسم: ':'Name: ')+d.name+'\n'+(lang==='ar'?'الهاتف: ':'Phone: ')+d.phone+'\n'+(lang==='ar'?'نوع المشروع: ':'Project: ')+d.type+(d.message?'\n'+(lang==='ar'?'التفاصيل: ':'Details: ')+d.message:'');
-      var w=window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(txt),'_blank');
-      if(!w)location.href='https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(txt);
+      var waUrl='https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(txt);
+      var w=window.open(waUrl,'_blank');
+      if(!w){
+        if(pending){
+          var redirected=false,goWa=function(){if(!redirected){redirected=true;location.href=waUrl;}};
+          setTimeout(goWa,500);
+          pending.then(goWa).catch(goWa);
+        }else{location.href=waUrl;}
+      }
     }
     if(!pending){note.textContent=ok;f.reset();return;}
     pending.then(function(){note.textContent=ok;f.reset();}).catch(function(){note.textContent=WA_NUM?ok:bad;});
   });
-  var names=['cover','home','services','collections','wood-carpentry','projects','contact'],
+  var names=['cover','home','collections','wood-carpentry','projects','contact'],
       views=document.querySelectorAll('[data-view]'),block=document.getElementById('contactblock'),links=document.querySelectorAll('nav a');
   function onScroll(){var b=document.body;if(!b.classList.contains('lp'))return;var c=document.querySelector('.cover'),lim=Math.max(120,(c?c.offsetHeight:600)-90);b.classList.toggle('at-top',window.scrollY<lim)}
   window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);
   var cue=document.getElementById('cue');if(cue)cue.addEventListener('click',function(){var c=document.querySelector('.cover');window.scrollTo({top:c?c.offsetHeight:window.innerHeight,behavior:'smooth'})});
   function route(){
     var h=location.hash.slice(1);if(names.indexOf(h)<0)h='cover';
+    if(h==='home')h='cover';
+    trackPageView(h);
+    var lmd=document.getElementById('lm-detail');if(lmd)lmd.hidden=true;
     var show=h==='cover'?['cover','home']:[h];
     views.forEach(function(v){v.hidden=!v.getAttribute('data-view').split(' ').some(function(x){return show.indexOf(x)>-1})});
-    block.hidden=false;
-    document.body.className=h==='cover'?'lp at-top':((h==='services'||h==='projects')?'is-green':'');
+    if(block)block.hidden=(h!=='contact');
+    document.body.className=h==='cover'?'lp at-top':'';
     onScroll();
-    var tc=document.querySelector('meta[name=theme-color]');if(tc)tc.setAttribute('content',h==='cover'?'#0f1a17':(h==='services'?'#0f1a17':'#f6f1e7'));
+    document.querySelectorAll('.cover-video,.cover-video-bg').forEach(function(v){if(h==='cover')v.play().catch(function(){});else v.pause();});
+    var tc=document.querySelector('meta[name=theme-color]');if(tc)tc.setAttribute('content',h==='cover'?'#0f1a17':'#f6f1e7');
     links.forEach(function(a){var tg=a.getAttribute('href');if(tg==='#'+h||(tg==='#cover'&&h==='home'))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
     setMenu(false);
     window.scrollTo(0,0);
+    if(h==='projects'&&window.initProjectsSlider)window.initProjectsSlider();
   }
   /* ---- Products: search, filter, sort ---- */
   var PV=(window.SITE_CONFIG&&window.SITE_CONFIG.previewIds)||[],PRODUCTS=(window.PRODUCTS||[]).filter(function(p){return !PV.length||PV.indexOf(p.id)>-1}),BASE=PRODUCTS.slice(),addOn=!(window.SITE_CONFIG&&window.SITE_CONFIG.showAddButton===false),CATS=window.CATEGORIES||[],STY=window.STYLES||[],TYP=window.TYPES||[],
@@ -84,8 +160,9 @@
   function hay(p){return p._h||(p._h=norm([p.en,p.ar,p.desc_en,p.desc_ar,lab(CATS,p.cat,'en'),lab(CATS,p.cat,'ar'),lab(STY,p.style,'en'),lab(STY,p.style,'ar'),lab(TYP,p.kind,'en'),lab(TYP,p.kind,'ar')].join(' ')))}
   function card(p,i){
     var src=p.img||(p.imgs&&p.imgs[0])||'',
-    im=src?'<img src="'+esc(src)+'" decoding="async" alt="'+esc(p[lang])+'" loading="lazy">':'<div class="ph '+['','b','c'][i%3]+'"></div>';
-    return '<article class="pc" data-id="'+esc(p.id)+'"><div class="pimg" data-open>'+im+'</div><h3><button type="button" class="pname" data-open>'+esc(p[lang])+'</button></h3><p>'+esc(meta(p))+'</p>'+(p['desc_'+lang]?'<p class="pdesc">'+esc(p['desc_'+lang])+'</p>':'')+'</article>';
+    imageShape=p.image_shape==='wide'?' wide':'',
+    im=src?'<img src="'+esc(src)+'" decoding="async" alt="'+esc(p[lang])+'" loading="'+(i<6?'eager':'lazy')+'">':'<div class="ph '+['','b','c'][i%3]+'"></div>';
+    return '<article class="pc" data-id="'+esc(p.id)+'"><div class="pimg'+imageShape+'" data-open>'+im+'</div><h3><button type="button" class="pname" data-open>'+esc(p[lang])+'</button></h3><p>'+esc(meta(p))+'</p>'+(p['desc_'+lang]?'<p class="pdesc">'+esc(p['desc_'+lang])+'</p>':'')+'</article>';
   }
   function result(){
     var w=norm(qs).split(/\s+/).filter(Boolean);
@@ -132,7 +209,7 @@
     for(var i=1;i<=63;i++){
       var n=String(i).padStart(2,'0'),label=woodNumber(i-1),full='images/wood-carpentry/full/wood-'+n+'.webp';
       var action=lang==='ar'?'عرض الصورة كاملة':'Full-size image';
-      cards+='<article class="wood-card"><img src="images/wood-carpentry/wood-'+n+'.webp" alt="'+(lang==='ar'?'نجارة خشبية رقم '+n:'Wood carpentry '+n)+'" loading="lazy" decoding="async"><span class="wood-card-number">'+label+'</span><a class="wood-full-link" href="'+full+'" target="_blank" rel="noopener">'+action+'</a></article>';
+      cards+='<article class="wood-card"><img src="images/wood-carpentry/wood-'+n+'.webp" alt="'+(lang==='ar'?'نجارة خشبية رقم '+n:'Wood carpentry '+n)+'" loading="'+(i<=6?'eager':'lazy')+'" decoding="async"><span class="wood-card-number">'+label+'</span><a class="wood-full-link" href="'+full+'" target="_blank" rel="noopener">'+action+'</a></article>';
     }
     g.innerHTML=cards;
   }
@@ -200,3 +277,38 @@
   window.addEventListener('hashchange',route);route();
 })();
 
+
+/* Touch & tap animation for the home square buttons */
+(function(){
+  var SEL='.hero .hdoors a',lastT=0;
+  function find(e){return e.target&&e.target.closest?e.target.closest(SEL):null}
+  function trigger(a,x,y){
+    var now=Date.now();if(now-lastT<250)return;lastT=now;
+    var r=a.getBoundingClientRect(),d=Math.max(r.width,r.height)*2.4,s=document.createElement('span');
+    var cx=(typeof x==='number'?x:r.left+r.width/2)-r.left-d/2;
+    var cy=(typeof y==='number'?y:r.top+r.height/2)-r.top-d/2;
+    s.className='rip';
+    s.style.cssText='width:'+d+'px;height:'+d+'px;left:'+cx+'px;top:'+cy+'px';
+    a.appendChild(s);a.classList.add('pressed');
+    setTimeout(function(){s.remove()},650);
+    setTimeout(function(){a.classList.remove('pressed')},480);
+  }
+  document.addEventListener('touchstart',function(e){
+    var a=find(e);if(!a)return;
+    var t=e.touches&&e.touches[0];
+    trigger(a,t?t.clientX:null,t?t.clientY:null);
+  },{passive:true});
+  document.addEventListener('pointerdown',function(e){
+    if(e.pointerType==='touch')return;
+    var a=find(e);if(!a)return;
+    trigger(a,e.clientX,e.clientY);
+  },{passive:true});
+  document.addEventListener('click',function(e){
+    var a=find(e);if(!a||e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;
+    var h=a.getAttribute('href');if(!h||h.charAt(0)!=='#')return;
+    if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+    e.preventDefault();
+    a.classList.add('pressed');
+    setTimeout(function(){a.classList.remove('pressed');location.hash=h},420);
+  });
+})();

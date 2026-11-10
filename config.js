@@ -1,7 +1,7 @@
 /* Site settings. Edit only this file for these values. */
 window.SITE_CONFIG = {
   // Paste the Google Apps Script Web App URL here to save contact requests in Google Sheets.
-  sheetUrl: 'https://script.google.com/macros/s/AKfycbybIpq1Uw1FglUWgZMBB2h_tTMOln0UEf41u68329yrRDss6ohn8X8nl1J4fi176du-/exec',
+  sheetUrl: 'https://script.google.com/macros/s/AKfycbzU7aUYn_Jme5ry35ikXFNdNQzfhVBSuRxWeiZpg7qUXliMwe-UcDFbflzZCPDO0SfS/exec',
   // WhatsApp number in international format, digits only (e.g. 201012345678). When set, the form also opens WhatsApp with the request filled in.
   // Use sheetUrl, whatsappNumber, or both together.
   whatsappNumber: '201213334955',
