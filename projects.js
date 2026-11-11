@@ -23,14 +23,19 @@
   function base(p){return p.assetFolder||'images/projects/p'+p.n+'/'}
   function esc(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}
 
+  // Source filenames 1.jpeg-31.jpeg and 40.jpeg set the initial card order.
+  // 23.jpeg and the unmatched WhatsApp image are new uploads, added as wood-64/65.
+  var NUMBERED_WOOD=[56,48,61,45,34,24,22,37,46,10,7,6,11,43,21,28,26,27,23,18,17,62,64,55,54,40,39,1,57,53,49,38];
+  var WOOD_ORDER=NUMBERED_WOOD.concat([65]);
+  for(var wi=1;wi<=63;wi++)if(WOOD_ORDER.indexOf(wi)<0)WOOD_ORDER.push(wi);
   var WOOD=[];
-  for(var wi=1;wi<=63;wi++){
-    var wn=pad(wi);
+  for(var oi=0;oi<WOOD_ORDER.length;oi++){
+    var wn=pad(oi+1), assetNo=pad(WOOD_ORDER[oi]);
     WOOD.push({
-      n:wi,
+      n:oi+1,
       imgs:1,
       vids:0,
-      singleImg:'images/wood-carpentry/full/wood-'+wn+'.webp',
+      singleImg:'images/wood-carpentry/full/wood-'+assetNo+'.webp',
       en:'No. '+wn,
       ar:'رقم '+wn,
       cEn:'Wood Carpentry',
@@ -104,7 +109,7 @@
           '<button type="button" class="lm-card-btn" data-i="'+k+'" aria-label="'+esc(p[l])+'"'+(cover?'':' aria-disabled="true"')+'>'+
             '<span class="lm-card-img-wrap">'+
               (cover
-                ?'<img src="'+cover+'" alt="'+esc(p[l])+'" loading="'+(k<4?'eager':'lazy')+'" fetchpriority="'+(k<2?'high':'auto')+'" decoding="async">'
+                ?'<img src="'+cover+'" alt="'+esc(p[l])+'" loading="lazy" decoding="async">'
                 :'<span class="lm-card-soon" data-en="'+esc(p.cEn||'Coming Soon')+'" data-ar="'+esc(p.cAr||'قريبًا')+'">'+esc(soon)+'</span>')+
             '</span>'+
           '</button>'+
@@ -393,7 +398,7 @@
     function mediaBox(it,itemIndex,extraCls){
       if(it.t==='v'){
         return '<div class="lm-img-wrap '+(extraCls||'')+' lm-reveal" data-mindex="'+itemIndex+'">'+
-          '<video src="'+it.src+'" poster="'+it.th+'" controls playsinline preload="metadata"></video>'+
+          '<video src="'+it.src+'" poster="'+it.th+'" controls playsinline preload="none"></video>'+
         '</div>';
       }
       return '<div class="lm-img-wrap '+(extraCls||'')+' lm-reveal" data-mindex="'+itemIndex+'">'+

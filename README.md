@@ -1,6 +1,6 @@
 # NourEldin Home Website
 
-This is a static website. Open `index.html` in a browser to view it. No build step or package installation is required. For deployment, upload the contents of this folder to the hosting provider's website root, keeping the folders and file paths intact.
+This is a static website. Open `index.html` in a browser to view it. No build step or package installation is required. Images and videos load when needed to improve initial loading; the supplied media resolution is preserved. For deployment, upload the contents of this folder to the hosting provider's website root, keeping the folders and file paths intact.
 
 ## Main files
 
@@ -41,4 +41,6 @@ The plus tile is disabled by default. If enabled, additions are stored in the br
 
 ## GitHub upload parts
 
-If uploading through GitHub's website, use the four batches in `NourEldin_GitHub_Parts/Updated_2026-11-11` one at a time in the same repository. Preserve the paths inside each batch and upload its contents to the repository root; do not create `Part_01` through `Part_04` directories in the deployed site. See `UPLOAD_INSTRUCTIONS.txt` in that batch folder for steps.
+If uploading through GitHub's website, use the four batches in `NourEldin_GitHub_Parts/Updated_2026-11-12_Optimized` one at a time in the same repository. Preserve the paths inside each batch and upload its contents to the repository root; do not create `Part_01` through `Part_04` directories in the deployed site. See `UPLOAD_INSTRUCTIONS.txt` in that batch folder for steps.
+
+
