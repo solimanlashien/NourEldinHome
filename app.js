@@ -21,7 +21,8 @@
   }
   if(WA_NUM){document.querySelectorAll('.soc a[aria-label=WhatsApp],.wafloat').forEach(function(x){x.href='https://wa.me/'+WA_NUM})}
   var welcome=document.getElementById('welcome-gate'),welcomeForm=document.getElementById('welcome-form');
-  if(welcome&&welcomeForm){
+  if(welcome)welcome.hidden=true;
+  if(window.SITE_CONFIG&&window.SITE_CONFIG.showWelcomeGate===true&&welcome&&welcomeForm){
     var welcomeKey='nourEldinWelcomeVisitorV1',welcomeCompleted=false;
     try{
       var savedVisitor=JSON.parse(localStorage.getItem(welcomeKey)||'null');
@@ -142,6 +143,7 @@
     setMenu(false);
     window.scrollTo(0,0);
     if(h==='projects'&&window.initProjectsSlider)window.initProjectsSlider();
+    if(h==='wood-carpentry'&&window.initWoodSlider)window.initWoodSlider();
   }
   /* ---- Products: search, filter, sort ---- */
   var PV=(window.SITE_CONFIG&&window.SITE_CONFIG.previewIds)||[],PRODUCTS=(window.PRODUCTS||[]).filter(function(p){return !PV.length||PV.indexOf(p.id)>-1}),BASE=PRODUCTS.slice(),addOn=!(window.SITE_CONFIG&&window.SITE_CONFIG.showAddButton===false),CATS=window.CATEGORIES||[],STY=window.STYLES||[],TYP=window.TYPES||[],
@@ -202,18 +204,7 @@
     $('rcount').textContent=lang==='ar'?(f?n+' من '+all+' قطعة':all+' قطعة'):(f?n+' of '+all+' pieces':all+(all===1?' piece':' pieces'));
   }
   function clearAll(){cat=sty=typ='all';qs='';$('q').value='';shown=99999;renderShop()}
-  function woodNumber(i){var n=String(i+1).padStart(2,'0');return lang==='ar'?'رقم '+n:'No. '+n}
-  function renderWood(){
-    var g=$('wood-grid');if(!g)return;
-    var cards='';
-    for(var i=1;i<=63;i++){
-      var n=String(i).padStart(2,'0'),label=woodNumber(i-1),full='images/wood-carpentry/full/wood-'+n+'.webp';
-      var action=lang==='ar'?'عرض الصورة كاملة':'Full-size image';
-      cards+='<article class="wood-card"><img src="images/wood-carpentry/wood-'+n+'.webp" alt="'+(lang==='ar'?'نجارة خشبية رقم '+n:'Wood carpentry '+n)+'" loading="'+(i<=6?'eager':'lazy')+'" decoding="async"><span class="wood-card-number">'+label+'</span><a class="wood-full-link" href="'+full+'" target="_blank" rel="noopener">'+action+'</a></article>';
-    }
-    g.innerHTML=cards;
-  }
-  window.renderAll=function(){renderShop();renderWood()};
+  window.renderAll=function(){renderShop();if(window.renderWoodSliderCards)window.renderWoodSliderCards()};
   document.addEventListener('click',function(e){
     
     var c=e.target.closest('.chip');
