@@ -4,6 +4,23 @@
    3. Side menu, contact form. */
 (function(){
   var SHEET_URL=(window.SITE_CONFIG&&window.SITE_CONFIG.sheetUrl)||'',WA_NUM=String((window.SITE_CONFIG&&window.SITE_CONFIG.whatsappNumber)||'').replace(/\D/g,'');
+  var homeVideo=document.getElementById('home-video'),videoLoadQueued=false;
+  function startCoverVideo(){
+    if(!homeVideo)return;
+    if(homeVideo.getAttribute('src')){homeVideo.play().catch(function(){});return}
+    var conn=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+    if((conn&&conn.saveData)||(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches))return;
+    if(videoLoadQueued)return;
+    videoLoadQueued=true;
+    var load=function(){
+      videoLoadQueued=false;
+      if(location.hash&&location.hash!=='#cover'&&location.hash!=='#home')return;
+      var videoSrc=homeVideo.getAttribute('data-src');if(!videoSrc)return;
+      homeVideo.src=videoSrc;homeVideo.load();homeVideo.play().catch(function(){});
+    };
+    if('requestIdleCallback' in window)window.requestIdleCallback(load,{timeout:3000});
+    else window.setTimeout(load,1200);
+  }
   function trackPageView(page){
     if(!SHEET_URL)return;
     function storedId(storage,key){
@@ -65,7 +82,7 @@
       try{sessionStorage.setItem('nourEldinWelcomeSubmittedSessionV1','1')}catch(e){}
       welcome.hidden=true;
       Array.prototype.forEach.call(document.body.children,function(el){el.inert=false});
-      document.querySelectorAll('.cover-video,.cover-video-bg').forEach(function(v){v.currentTime=0;v.play().catch(function(){})});
+      document.querySelectorAll('.cover-video,.cover-video-bg').forEach(function(v){if(v===homeVideo)startCoverVideo();else{v.currentTime=0;v.play().catch(function(){})}});
       if(location.hash!=='#cover')location.hash='#cover';
       else window.scrollTo(0,0);
     });
@@ -137,7 +154,7 @@
     if(block)block.hidden=(h!=='contact');
     document.body.className=h==='cover'?'lp at-top':'';
     onScroll();
-    document.querySelectorAll('.cover-video,.cover-video-bg').forEach(function(v){if(h==='cover')v.play().catch(function(){});else v.pause();});
+    document.querySelectorAll('.cover-video,.cover-video-bg').forEach(function(v){if(h==='cover'){if(v===homeVideo)startCoverVideo();else v.play().catch(function(){})}else v.pause()});
     var tc=document.querySelector('meta[name=theme-color]');if(tc)tc.setAttribute('content',h==='cover'?'#0f1a17':'#f6f1e7');
     links.forEach(function(a){var tg=a.getAttribute('href');if(tg==='#'+h||(tg==='#cover'&&h==='home'))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
     setMenu(false);
@@ -163,7 +180,7 @@
   function card(p,i){
     var src=p.img||(p.imgs&&p.imgs[0])||'',
     imageShape=p.image_shape==='wide'?' wide':'',
-    im=src?'<img src="'+esc(src)+'" decoding="async" alt="'+esc(p[lang])+'" loading="'+(i<6?'eager':'lazy')+'">':'<div class="ph '+['','b','c'][i%3]+'"></div>';
+    im=src?'<img src="'+esc(src)+'" decoding="async" alt="'+esc(p[lang])+'" loading="lazy">':'<div class="ph '+['','b','c'][i%3]+'"></div>';
     return '<article class="pc" data-id="'+esc(p.id)+'"><div class="pimg'+imageShape+'" data-open>'+im+'</div><h3><button type="button" class="pname" data-open>'+esc(p[lang])+'</button></h3><p>'+esc(meta(p))+'</p>'+(p['desc_'+lang]?'<p class="pdesc">'+esc(p['desc_'+lang])+'</p>':'')+'</article>';
   }
   function result(){
